@@ -6,11 +6,25 @@
   "repository": "git@github.com:Esusu/website.git",
   "author": "Paul Dariye <paul.dariye@gmail.com>",
   "license": "UNLICENSED",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
   "dependencies": {
-    "grid-styled": "^2.0.0-0",
+    "express": "^4.15.3",
+    "grid-styled": "^2.0.0-2",
     "next": "3.0.0-beta13",
+    "polished": "^1.1.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "styled-components": "^2.0.1"
+    "react-no-ssr": "^1.1.0",
+    "react-redux": "^5.0.5",
+    "react-tabs": "^1.1.0",
+    "redux": "^3.7.0",
+    "redux-form": "^6.8.0",
+    "smoothscroll-polyfill": "^0.3.5",
+    "styled-components": "^2.0.1",
+    "styled-system": "^1.0.0-4"
   }
 }
