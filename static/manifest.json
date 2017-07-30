@@ -1,0 +1,38 @@
+{
+  "name": "Esusu Inc.",
+  "short_name": "Esusu",
+  "description": "Group savings for the 21st century.",
+  "lang": "en-US",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#198F45",
+  "icons": [
+    {
+      "src": "static/esusu@128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "static/esusu@144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "static/esusu@152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "static/esusu@192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "static/esusu@64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#FFFFFF"
+}
