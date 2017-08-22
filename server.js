@@ -9,6 +9,11 @@ app.prepare()
 .then(() => {
   const server = express()
 
+  server.get('/story/:id', (req, res) => {
+    const queryParams = { title: req.params.id }
+    return app.render(req, res, '/story', queryParams)
+  })
+
   server.get('*', (req, res) => {
     return handle(req, res)
   })
@@ -18,7 +23,7 @@ app.prepare()
     console.log('> Ready on http://localhost:3000')
   })
 })
-.catch((ex) => {
-  console.error(ex.stack)
+.catch((err) => {
+  console.error(err.stack)
   process.exit(1)
 })
