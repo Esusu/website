@@ -20,7 +20,8 @@ function Header() {
 }
 
 const Wrapper = styled.header`
-padding: 1em;
+  padding: 1em;
+  border: 1px solid #E0E0E0;
 `
 
 export default Header

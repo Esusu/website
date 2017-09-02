@@ -23,12 +23,12 @@ export default class extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Section bgColor="#EDF0F5">
+        <Section>
           <Block center p={[4]}>
-            <Title>About Us</Title>
+            <Title color="#000" fontSize="3em" light>About Us</Title>
             <blockquote>
               <Paragraph>&quot;To Build Tools that Cultivate Financially Healthy Communities.&quot;</Paragraph>
-              <cite><Subheading>- Our Mission</Subheading></cite>
+              <cite><Paragraph color="#9B9B9B" font-size="1.5em">- Our Mission</Paragraph></cite>
             </blockquote>
           </Block>
         </Section>
@@ -36,13 +36,13 @@ export default class extends React.Component {
           <Block>
             <Flex column>
               <Box width={1} p={[1, 2, 3, 4]}>
-                <Subheading>Our Vision</Subheading>
+                <Subheading color="#4a4a4a" fontSize="1.25em">Our Vision</Subheading>
                 <Paragraph>Generate equitable financial access for everyone.</Paragraph>
-                <Subheading>The Problem</Subheading>
+                <Subheading color="#4a4a4a" fontSize="1.25em">The Problem</Subheading>
                 <Paragraph>
                   Around the world there are over 2 Billion unbanked and underbanked people. Even right here in our backyard, 57% percent of Americans would be considered financially unhealthy. This is not a problem that is going away. 
                 </Paragraph><br/>
-                <Subheading>Why Esusu?</Subheading>
+                <Subheading color="#4a4a4a" fontSize="1.25em">Why Esusu?</Subheading>
                 <Paragraph>
                 Over the course of history hundreds of financial and economic interventions have been tried and failed. All but one have failed to demonstrate the staying power and long term results that truly moves the needle. As such Rotational Savings, often referred to as ROSCA, has become the most common and impactful financial intervention in the world. It is an informal system in which groups of people come together, pool their income, and distribute it to different members of the trusted group based on their needs. It is this communal system upon which Esusu is built.
               </Paragraph><br />
@@ -63,7 +63,7 @@ What we realized is that the historic paper-pencil intervention of rotational sa
               <Paragraph>
               On top of this building a digital system allows us to measure, track, and report users contributions helping them build the credit and identity they need to access mainstream financial solutions in the future. 
             </Paragraph>
-            <Subheading>Our Impact & Measurement</Subheading>
+            <Subheading color="#4a4a4a" fontSize="1.25em">Our Impact & Measurement</Subheading>
             <Paragraph> 
               Our impact is both measurable and immeasurable. At the simplest level we help people save. We give them the accountability, purpose, and tools they need to obtain their dreams. We keep track of every dollar saved on our platform and always look to connect with our users to hear what they use their payout for. 
             </Paragraph><br />
@@ -73,7 +73,7 @@ What we realized is that the historic paper-pencil intervention of rotational sa
             <Paragraph>
               In the longer term we want to measure economic empowerment in terms access to other financial tools, credit reporting, and overall social mobility. If Esusu is working properly it is not a pure individual solution but rather a community-driven solution that generates economic opportunity and mobility.
             </Paragraph>
-            <Subheading>Still don’t understand Esusu?</Subheading>
+            <Subheading color="#4a4a4a" fontSize="1.25em">Still don’t understand Esusu?</Subheading>
             <Paragraph>
               That’s totally understandable. Esusu is deeply rooted in cultures in Africa, Latin America, and South Asia. If you have not spent time in those regions of the world, this may feel a bit foreign, and that’s ok. An easy way to contextualize this is ‘pay-it-forward crowdfunding’. It’s coming together to as a community to crowdfund each other’s aspirations and goals. 
             </Paragraph><br />

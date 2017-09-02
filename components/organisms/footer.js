@@ -17,7 +17,7 @@ import InterestForm from '../organisms/interestForm'
 function Footer() {
   return (
     <Wrapper>
-      <Section>
+      <Section bgColor="#60C091" >
         <Block>
         <Flex justify="center" wrap>
           <Box width={1, 1/2} p={[1, 2, 3, 4]} >
@@ -26,15 +26,12 @@ function Footer() {
           <Box width={1, 1/2} p={[1, 2, 3, 4]} >
             <Flex justify="center">
               <Box>
-                {/* <InterestForm />  */}
+                <InterestForm /> 
               </Box>
             </Flex>
           </Box>
           <Box width={1} pb={[1, 2, 3, 4]}  pr={[1, 2, 3, 4]}  pl={[1, 2, 3, 4]}>
             <Errata>
-              <p>
-                <Link prefetch href="/terms"><a>Terms & Conditions</a></Link> <Link prefetch href="/privacy"><a>Privacy & Security</a></Link><br />
-              </p>
               <p>
                 Esusu Inc., {(new Date()).getFullYear()} &copy;. All rights reserved.
               </p>
@@ -50,10 +47,12 @@ function Footer() {
 const Wrapper = styled.footer`
 `
 const Errata = styled.div`
-font-family: Avenir;
-font-size: 12px;
-color: #ABABAB;
-letter-spacing: 0;
+  font-family: Avenir;
+  font-size: 12px;
+  & > p, & > a  {
+    color: #fff;
+    letter-spacing: 0;
+  }
 `
 
 export default Footer

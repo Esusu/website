@@ -14,6 +14,7 @@ import {
   Paragraph,
   HR } from '../components/atoms/typography'
 
+
 import InviteForm from '../components/organisms/inviteForm'
 
 export default class extends React.Component {
@@ -28,7 +29,7 @@ export default class extends React.Component {
           <Block>
             <Flex align="center" justify="center" wrap>
               <Box width={[1, 1/2, 1/3]} p={[ 1, 2, 3, 4 ]}>
-                <Title>Save your income collectively</Title>
+                <Title>Save income collectively</Title>
               </Box>
               <Box width={[1, 1/2, 1/3]}>
                 <DemoView>
@@ -37,7 +38,7 @@ export default class extends React.Component {
               </Box>
               <Box width={[1, 1, 1/3]} p={[ 1, 2, 3, 4 ]}>
                 <HR width="30" />
-                <Subheading>Simple. <br />Secure. <br />Sustainable.</Subheading>
+                <Subheading color="#ABABAB">Simple. <br />Secure. <br />Sustainable.</Subheading>
                 <Paragraph>Collect and save money with your personal communities. Manage your collective sum and organize each pay period to a different person.</Paragraph>
                 <Spacer /> 
                 <Paragraph><PlayIcon src="/static/play-icon.png" />The Esusu Promise</Paragraph> 
@@ -45,11 +46,27 @@ export default class extends React.Component {
             </Flex> 
           </Block> 
         </Section> 
-        <Section marginTop="10em" bgColor="#f7f7f7"> 
-          <Block pt={[1, 2, 3, 4]} pb={[1, 2, 3, 4]}>
+        <Section marginTop="10em" bgColor="#60C091"> 
+          <Block p={[1, 2, 3, 4]}>
             <Flex justify="center" align="center" wrap column>
-              <Box>
-                <Subheading>How it works?</Subheading>
+              <Box width={1} mt="-10em">
+                <PressCoverageBox  p={[1, 2, 3, 4]}>
+                  <Flex justify="center" align="center" wrap column>
+                    <Box width={1}>
+                      <Paragraph color="#000">Featured in ...</Paragraph>
+                    </Box>
+                    <Box width={1} pt={2}>
+                      <Flex justify="center" align="center" wrap column>
+                        <Box>
+                          <CoverageImage src="/static/teenvogue.svg" alt="Esusu Inc Feature - TeenVogue" />
+                        </Box>
+                      </Flex>
+                    </Box>
+                  </Flex>
+                </PressCoverageBox>
+              </Box>
+              <Box width={1}>
+                <Subheading center>How it works?</Subheading>
               </Box>
               <Box>
                 <Flex justify="center" wrap>
@@ -57,24 +74,35 @@ export default class extends React.Component {
                     <Card>
                       <Step>1</Step>
                       <Desc>Download App</Desc>
+                      <Overlay>
+                      </Overlay>
                     </Card>
                   </Box>
                   <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
                     <Card>
                       <Step>2</Step>
-                      <Desc>Create Account</Desc>
+                      <Desc>Create Group</Desc>
+                      <Overlay>
+                        <OverlayImage src="/static/creategroup.png" />
+                      </Overlay>
                     </Card>
                   </Box>
                   <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
                     <Card>
                       <Step>3</Step>
-                      <Desc>Create Group</Desc>
+                      <Desc>Invite Friends</Desc>
+                      <Overlay>
+                        <OverlayImage src="/static/invitefriends.png" />
+                      </Overlay>
                     </Card>
                   </Box>
                   <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
                     <Card>
                       <Step>4</Step>
-                      <Desc>Invite Friends</Desc>
+                      <Desc>Be Empowered!</Desc>
+                      <Overlay>
+                        <OverlayImage src="/static/beempowered.png" />
+                      </Overlay>
                     </Card>
                   </Box>
                 </Flex>
@@ -82,12 +110,12 @@ export default class extends React.Component {
             </Flex>
           </Block>
         </Section>
-        <Section marginTop="5em">
+        <Section>
           <Block>
             <Flex justify="center" align="flex-end" wrap>
               <Box width={[1, 1/2]} p={[ 1, 2, 3, 4 ]}>
                 <HR width="20" />
-                <Subheading>Save Together. <br/>Build Community. <br/>Be Empowered.</Subheading>
+                <Subheading color="#ABABAB">Save Together. <br/>Build Community. <br/>Be Empowered.</Subheading>
                 <Paragraph>Esusu could be best classified as purpose-first and we are entirely committed to our vision of generating equitable financial access. As such we reinvest the majority of our net margin toward furthering this vision.</Paragraph>
                 <Spacer />
               </Box>
@@ -99,38 +127,6 @@ export default class extends React.Component {
             </Flex>
           </Block>
         </Section>
-        {/* <Section bgColor="#f7f7f7" marginTop="10em"> */}
-        {/*   <Block> */}
-        {/*     <Flex align="center" column> */}
-        {/*       <Box> */}
-        {/*         <Subheading>IN THE NEWS</Subheading> */}
-        {/*       </Box> */}
-        {/*       <Box style={ {textAlign: 'center' }} p={[2]}> */}
-        {/*         <Flex justify="center" align="center" wrap> */}
-        {/*           <Box width={[1/2, 1/3, 1/6]} p={[1, 2, 3, 4]}> */}
-        {/*             <Logo src="/static/placeholder.jpg" /> */}
-        {/*           </Box> */}
-        {/*           <Box width={[1/2, 1/3, 1/6]} p={[1, 2, 3, 4]}> */}
-        {/*             <Logo src="/static/placeholder.jpg" /> */}
-        {/*           </Box> */}
-        {/*           <Box width={[1/2, 1/3, 1/6]} p={[1, 2, 3, 4]}> */}
-        {/*             <Logo src="/static/placeholder.jpg" /> */}
-        {/*           </Box> */}
-        {/*           <Box width={[1/2, 1/3, 1/6]} p={[1, 2, 3, 4]}> */}
-        {/*             <Logo src="/static/placeholder.jpg" /> */}
-        {/*           </Box> */}
-        {/*           <Box width={[1/2, 1/3, 1/6]} p={[1, 2, 3, 4]}> */}
-        {/*             <Logo src="/static/placeholder.jpg" /> */}
-        {/*           </Box> */}
-        {/*           <Box width={[1/2, 1/3, 1/6]} p={[1, 2, 3, 4]}> */}
-        {/*             <Logo src="/static/placeholder.jpg" /> */}
-        {/*           </Box> */}
-        {/*         </Flex> */}
-        {/*       </Box> */}
-        {/*     </Flex> */}
-        {/*   </Block> */}
-        {/* </Section> */}
-        {/* <Spacer /> */}
       </Wrapper>
     )
   }
@@ -182,16 +178,17 @@ border-radius: 4px;
 
 `
 const Overlay = styled.div`
-position: absolute;
-bottom: 0;
-left: 0;
-right: 0;
-background-color: #60C091;
-overflow: hidden;
-width: 100%;
-height: 0;
-transition: .5s ease;
-border-radius: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f7f7f7;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+  border-radius: 4px;
+  text-align: center;
 `
 
 const Bio = styled.div`
@@ -232,9 +229,28 @@ const Step = styled.h3`
   font-size: 3em;
   font-weight: 800;
   line-height: 0em;
+`
 
+const OverlayImage = styled.img`
+  z-index: 6; 
+  height: auto;
+  width: 90%;
 `
 
 const Desc = styled.p`
 display: block;
+`
+
+const PressCoverageBox = styled(Box)`
+  background: #FFFFFF;
+  border: 1px solid #F7F7F7;
+  box-shadow: -1px 2px 2px 0 rgba(0,0,0,0.19);
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+`
+
+const CoverageImage = styled.img`
+  height: 1.6em;
+  max-height: 1.6em;
+  width: auto;
 `
