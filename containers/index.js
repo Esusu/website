@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
+import 'isomorphic-fetch'
 
 import { 
   Section, 
@@ -22,10 +23,16 @@ import InviteForm from '../components/organisms/inviteForm'
 
 export default class extends React.Component {
   static async getInitialProps({ req, query }) {
-    return {}
+    const  { slug } = req ? req.params : query
+    // const res = await 
+    return {
+      slug
+    }
   }
 
   render() {
+    const slug = this.props.slug
+    console.log(this.props.prismicCtx)
     return (
       <Wrapper>
         <Section>

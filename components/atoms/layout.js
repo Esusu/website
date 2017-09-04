@@ -31,7 +31,7 @@ const Section = styled.section`
 `
 
 Section.propTypes = {
-  backgroundColor: PropTypes.string.isRequired
+  bgColor: PropTypes.string
 }
 
 
