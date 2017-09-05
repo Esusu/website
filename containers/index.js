@@ -77,18 +77,18 @@ export default class extends React.Component {
               </Box>
               <Box>
                 <Flex justify="center" wrap>
+                  {/* <Box p={[1, 2]} w={[1, 1/4, 1/4]}> */}
+                  {/*   <Card> */}
+                  {/*     <Step>1</Step> */}
+                  {/*     <Desc>Download App</Desc> */}
+                  {/*     <Overlay> */}
+                  {/*     </Overlay> */}
+                  {/*   </Card> */}
+                  {/* </Box> */}
                   <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
                     <Card>
                       <Step>1</Step>
-                      <Desc>Download App</Desc>
-                      <Overlay>
-                      </Overlay>
-                    </Card>
-                  </Box>
-                  <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
-                    <Card>
-                      <Step>2</Step>
-                      <Desc>Create Group</Desc>
+                      <Desc>Create a savings group of trusted family, friends, or co-workers.</Desc>
                       <Overlay>
                         <OverlayImage src="/static/creategroup.png" />
                       </Overlay>
@@ -96,8 +96,9 @@ export default class extends React.Component {
                   </Box>
                   <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
                     <Card>
-                      <Step>3</Step>
-                      <Desc>Invite Friends</Desc>
+                      <Step>2</Step>
+                      <Desc>Set monthly savings goals and make contributions to the pot.
+                      </Desc>
                       <Overlay>
                         <OverlayImage src="/static/invitefriends.png" />
                       </Overlay>
@@ -105,8 +106,8 @@ export default class extends React.Component {
                   </Box>
                   <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
                     <Card>
-                      <Step>4</Step>
-                      <Desc>Be Empowered!</Desc>
+                      <Step>3</Step>
+                      <Desc>Take turn receiving the full pot of money.</Desc>
                       <Overlay>
                         <OverlayImage src="/static/beempowered.png" />
                       </Overlay>
@@ -245,7 +246,9 @@ const OverlayImage = styled.img`
 `
 
 const Desc = styled.p`
-display: block;
+  display: block;
+  padding: 10px;
+  text-align: center;
 `
 
 const PressCoverageBox = styled(Box)`

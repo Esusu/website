@@ -30,10 +30,10 @@ function InterestForm() {
               </FormField>
             </Box>
           </Flex>
-          <Flex justify="flex-end">
+          <Flex>
             <Box width={1/2}>
               <FormField>
-                <Input type="submit" value="Request Invite" />
+                <Input type="submit" value="Request Invite" style={{ padding: '0 1.2em', fontSize: '1.2em', lineHeight: '0px', color: '#60C091'}} />
               </FormField>
             </Box>
           </Flex>
