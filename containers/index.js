@@ -27,23 +27,30 @@ export default class extends React.Component {
       <Wrapper>
         <Section>
           <Block>
-            <Flex align="center" justify="center" wrap>
-              <Box width={[1, 1/2, 1/3]} p={[ 1, 2, 3, 4 ]}>
-                <Title>Save income collectively</Title>
-              </Box>
-              <Box width={[1, 1/2, 1/3]}>
-                <DemoView>
-                  <iframe width="438" height="930" src="//invis.io/MW9V2FLVZ" frameBorder="0" allowFullScreen></iframe>
-                </DemoView>
-              </Box>
-              <Box width={[1, 1, 1/3]} p={[ 1, 2, 3, 4 ]}>
-                <HR width="30" />
-                <Subheading color="#ABABAB">Simple. <br />Secure. <br />Sustainable.</Subheading>
-                <Paragraph>Collect and save money with your personal communities. Manage your collective sum and organize each pay period to a different person.</Paragraph>
-                <Spacer /> 
-                <Paragraph><PlayIcon src="/static/play-icon.png" />The Esusu Promise</Paragraph> 
-              </Box> 
-            </Flex> 
+            <VideoView>
+              <video 
+                muted
+                autoPlay
+                loop
+              >
+                <source src="/static/esusu-highlight.webm" 
+                  type="video/webm"
+                />
+                <source src="/static/esusu-highlight.mp4" 
+                  type="video/mp4"
+                />
+                Video not supported by browser.
+              </video>
+              <Flex align="center" justify="center" column>
+                <Box width={[1]} p={[1, 2, 3, 4, 5, 6]}>
+                  <Title color="#fff">Save income collectively</Title>
+                  <Subheading color="#fff">Simple. Secure. Sustainable.</Subheading>
+                  <Paragraph color="#fff">Collect and save money with your personal communities. <br />Manage your collective sum and organize each pay period to a different person.</Paragraph>
+                  <Spacer /> 
+                  <Paragraph color="#fff"><PlayIcon src="/static/play-icon.png" />The Esusu Promise</Paragraph>
+                </Box>
+              </Flex> 
+            </VideoView>
           </Block> 
         </Section> 
         <Section marginTop="10em" bgColor="#60C091"> 
@@ -253,4 +260,39 @@ const CoverageImage = styled.img`
   height: 1.6em;
   max-height: 1.6em;
   width: auto;
+`
+
+const VideoView = styled.div`
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  text-align: center;
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 3;
+    top: 0; 
+    left: 0;
+    background: rgba(25,29,34,0.75);
+  }
+
+
+  & > video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  & > div:nth-child(2) {
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    padding-top: 11em;
+    z-index: 5;
+  }
 `
