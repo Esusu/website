@@ -20,7 +20,7 @@ export default (WrappedComponent) => (
     return (
       <div>
         <Header url={this.props.url}/>
-        <main>
+        <main style={{ overflow: 'hidden' }}>
           <WrappedComponent {...this.props} />
         </main>
         <Footer />

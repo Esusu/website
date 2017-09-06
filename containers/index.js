@@ -14,6 +14,9 @@ import {
   Paragraph,
   HR } from '../components/atoms/typography'
 
+import { media } from '../lib/helpers/prop-helpers'
+
+import { Button } from '../components/atoms/link'
 
 import InviteForm from '../components/organisms/inviteForm'
 
@@ -41,23 +44,25 @@ export default class extends React.Component {
                 />
                 Video not supported by browser.
               </video>
-              <Flex align="center" justify="center" column>
+              <VideoOverlay>
                 <Box width={[1]} p={[1, 2, 3, 4, 5, 6]}>
                   <Title color="#fff">Save income collectively</Title>
-                  <Subheading color="#fff">Simple. Secure. Sustainable.</Subheading>
-                  <Paragraph color="#fff">Collect and save money with your personal communities. <br />Manage your collective sum and organize each pay period to a different person.</Paragraph>
-                  <Spacer /> 
-                  <Paragraph color="#fff"><PlayIcon src="/static/play-icon.png" />The Esusu Promise</Paragraph>
+                  {/* <Subheading color="#fff">Simple. Secure. Sustainable.</Subheading> */}
+                  <Paragraph color="#fff">Collect and save money with your personal communities.</Paragraph>
+                  <Spacer />
+                  <Button href="#mc-embedded-subscribe-form">Request Early Access</Button>
+                  {/* <Spacer />  */}
+                  {/* <Paragraph color="#fff"><PlayIcon src="/static/play-icon.png" />The Esusu Promise</Paragraph> */}
                 </Box>
-              </Flex> 
+              </VideoOverlay>
             </VideoView>
           </Block> 
         </Section> 
-        <Section marginTop="10em" bgColor="#60C091"> 
-          <Block p={[1, 2, 3, 4]}>
+        <Section>
+          <Block>
             <Flex justify="center" align="center" wrap column>
-              <Box width={1} mt="-10em">
-                <PressCoverageBox  p={[1, 2, 3, 4]}>
+              <Box width={1}>
+                <PressCoverageBox  p={[1]}>
                   <Flex justify="center" align="center" wrap column>
                     <Box width={1}>
                       <Paragraph color="#000">Featured in ...</Paragraph>
@@ -72,10 +77,40 @@ export default class extends React.Component {
                   </Flex>
                 </PressCoverageBox>
               </Box>
+            </Flex>
+          </Block>
+        </Section>
+        <Section marginTop="5em">
+          <Block>
+            <Flex justify="center" align="center" wrap column>
+              <Box width={1}>
+                <Subheading color="#60C091"center>Collective Savings 101</Subheading>
+                <Paragraph color="#000" center>Manage your collective sum and organize each pay period to a different person.</Paragraph>
+                  <Spacer />
+
+              </Box>
+              <Box>
+                <RoscaVideoView>
+                  <video
+                    autoPlay
+                    loop
+                  >
+                    <source src="/static/rosca.mp4" type="video/mp4" />
+                    <img src="/static/rosca.gif" />
+                    Your browser doesn't have support for video
+                  </video>
+                </RoscaVideoView>
+              </Box>
+            </Flex>
+          </Block>
+        </Section>
+        <Section marginTop="5em" bgColor="#60C091"> 
+          <Block p={[1, 2, 3, 4]}>
+            <Flex column>
               <Box width={1}>
                 <Subheading center>How it works?</Subheading>
               </Box>
-              <Box>
+              <Box width={1}>
                 <Flex justify="center" wrap>
                   {/* <Box p={[1, 2]} w={[1, 1/4, 1/4]}> */}
                   {/*   <Card> */}
@@ -267,11 +302,10 @@ const CoverageImage = styled.img`
 
 const VideoView = styled.div`
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
   overflow: hidden;
   text-align: center;
   &:before {
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;
@@ -281,21 +315,44 @@ const VideoView = styled.div`
     left: 0;
     background: rgba(25,29,34,0.75);
   }
-
-
   & > video {
-    position: absolute;
+    position: relative;
+    vertical-align: middle;
+    min-width: 100%;
+    height: auto;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
     z-index: -1;
+    ${media.phone`
+        height: 380px;
+    `}
+    ${media.tablet`
+        height: 500px; 
+    `}
   }
-  & > div:nth-child(2) {
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
-    padding-top: 11em;
-    z-index: 5;
+`
+
+const VideoOverlay = styled(Flex)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+`
+
+const RoscaVideoView = styled.div`
+  position: relative;
+
+  & > video {
+    width: 400px;
+    height: auto;
+
+    ${media.phone`
+      width: 300px;
+    `}
   }
 `

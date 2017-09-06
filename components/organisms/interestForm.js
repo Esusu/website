@@ -15,26 +15,30 @@ function InterestForm() {
         <Box>
           <FormTitle>Android User?</FormTitle>
           <FormSubheading>Get notified when we finish developing our android app.</FormSubheading>
-          <FormField>
-            <Input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Enter your email address" required/>
-          </FormField>
-          <Flex justify="space-between">
-            <Box>
+          <Flex wrap>
+            <Box width={1}>
+              <FormField>
+                <Input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Enter your email address" required/>
+              </FormField>
+            </Box>
+            <Box width={[1]}>
               <FormField>
                 <Input type="text" placeholder="First Name" name="FNAME" class="" id="mce-FNAME"/>
               </FormField>
             </Box>
-            <Box>
+            <Box width={[1]}>
               <FormField>
                 <Input type="text" placeholder="Last name" name="LNAME" class="" id="mce-LNAME" />
               </FormField>
             </Box>
-          </Flex>
-          <Flex>
-            <Box width={1/2}>
-              <FormField>
-                <Input type="submit" value="Request Invite" style={{ padding: '0 1.2em', fontSize: '1.2em', lineHeight: '0px', color: '#60C091'}} />
-              </FormField>
+            <Box width={[1]}>
+              <Flex justify="flex-end">
+                <Box width={1/2}>
+                  <FormField>
+                    <Input type="submit" value="Request Invite" style={{ padding: '0 1.2em', fontSize: '1.2em', lineHeight: '0px', color: '#60C091'}} />
+                  </FormField>
+                </Box>
+              </Flex>
             </Box>
           </Flex>
         </Box>
@@ -44,3 +48,4 @@ function InterestForm() {
 }
 
 export default InterestForm
+

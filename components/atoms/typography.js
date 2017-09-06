@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { fontSize, color } from 'styled-system'
 
+import { media } from '../../lib/helpers/prop-helpers'
+
 const Title = styled.h1`
   font-family: Avenir;
-  font-size: 3.7em;
+  font-size: 3em;
   font-weight: bold;
   color: #ABABAB;
-  line-height: 59px;
+  line-height: 46px;;
   margin: 0;
   ${props => props.left &&`
     text-align: left;
@@ -29,6 +31,9 @@ const Title = styled.h1`
   `}
   ${fontSize} 
   ${color}
+  ${ media.phone`
+    font-size: 1.5em; 
+  `}
 `
 
 const Subtitle = styled.h2`
@@ -89,7 +94,7 @@ const Subheading = styled.h3`
 
 const Paragraph = styled.p`
   font-family: Avenir;
-  font-weight: book;
+  font-weight: 400px;
   font-size: 1em;
   color: #6d6d6d;
   line-height: 24px;

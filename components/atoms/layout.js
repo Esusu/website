@@ -16,7 +16,6 @@ import {
 
 const Section = styled.section`
   width: 100%;
-  margin-top: ${props => props.theme.marginTop};
   ${props => props.bgColor && `
     background-color: ${props.bgColor}; 
   `}
