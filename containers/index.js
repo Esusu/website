@@ -304,6 +304,7 @@ const VideoView = styled.div`
   position: relative;
   overflow: hidden;
   text-align: center;
+  height: 640px;
   &:before {
     content: "";
     position: absolute;
@@ -318,18 +319,23 @@ const VideoView = styled.div`
   & > video {
     position: relative;
     vertical-align: middle;
-    min-width: 100%;
+    width: 100%;
     height: auto;
     top: 0;
     left: 0;
     z-index: -1;
-    ${media.phone`
-        height: 380px;
-    `}
-    ${media.tablet`
-        height: 500px; 
-    `}
   }
+
+  ${media.phone`
+      height: 380px;
+  `}
+  ${media.tablet`
+      height: 500px; 
+  `}
+  ${media.desktop`
+      height: 600px;
+  `}
+
 `
 
 const VideoOverlay = styled(Flex)`

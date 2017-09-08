@@ -2,23 +2,47 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
+import Prismic from 'prismic.io'
+import 'isomorphic-fetch'
+
 import { Section, Block, Spacer } from '../components/atoms/layout'
 import {
   Title, 
   Subtitle,
   Subheading,
   Paragraph } from '../components/atoms/typography'
-//
-// const PostLink = (props) => (
-//   <Link as={`/story/${props.id}`} href={`/store`} />
-// )
 
-export default class extends React.Component {
-  static async getInitialProps({ req, query }) {
-    return {}
+import { initApi } from '../data/initApi'
+
+export default class Stories extends React.Component {
+  static async getInitialProps({ req }) {
+    return {
+      req
+    }
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      stories: []
+    }
+  }
+
+  componentWillMount(){
+    initApi(this.props.req).then((api) => {
+      return api.query(
+        Prismic.Predicates.at('document.type', 'post'), 
+        { orderings: '[my.post.published desc]' }
+      )
+    }).then((response) => {
+      this.setState({ 
+        stories: response.results
+      })
+    })
   }
 
   render() {
+    const stories = this.state.stories
     return (
       <Wrapper>
         <Section>
@@ -31,26 +55,24 @@ export default class extends React.Component {
         <Section>
           <Block center>
             <Flex justify="center" wrap>
-              { Array.from({length: 20}, () => Math.floor(Math.random() * 20))
-                  .map((i) => (
-                    <Box p={[4]} w={[1, 1/2, 1/3, 1/4]}  key={i.toString()}>
-                      <Link as={`/story/${i}`} href={`/story?title=${i}`}>
-                        <a>
-                          <Card>
-                            <Image src="http://lorempixel.com/600/600/nature/"/>
-                            <Overlay>
-                              <OverlayContent>
-                                <StyledImage src="http://lorempixel.com/300/300/people/" />
-                                <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>17 Sep 2017</Paragraph>
-                                <Subheading color="#9b9b9b" fontSize="0.8em">This is a title</Subheading>
-                              </OverlayContent>
-                            </Overlay>
-                          </Card>
-                        </a>
-                      </Link>
-                    </Box>
-                  ))
-              }
+              { stories.map((story) => (
+                <Box p={[4]} w={[1, 1/2, 1/3, 1/4]}  key={story.id}>
+                  <Link as={`/story/${story.uid}`} href={`/story?id=${story.uid}`}>
+                    <a>
+                      <Card>
+                        <Image src={`${story.getImage('post.featured') ? story.getImage('post.featured').url : ''}`}/>
+                        <Overlay>
+                          <OverlayContent>
+                            <StyledImage src={`lorempixel.com/600/600/people`} />
+                            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{story.getText('post.published')}</Paragraph>
+                            <Subheading color="#9b9b9b" fontSize="0.8em">{story.getText('post.title')}</Subheading>
+                          </OverlayContent>
+                        </Overlay>
+                      </Card>
+                    </a>
+                  </Link>
+                </Box>
+              ))}
             </Flex>
           </Block>
         </Section>
@@ -79,10 +101,11 @@ const Card = styled.div`
 const Image = styled.img`
   display: block;  
   width: 300px;
-  height: auto;
+  height: 300px;
   background: #F7F7F7;
   box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10);
   border-radius: 4px;
+  object-fit: cover;
 `
 
 const StyledImage = styled.img`
