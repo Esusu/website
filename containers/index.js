@@ -319,21 +319,16 @@ const VideoView = styled.div`
   & > video {
     position: relative;
     vertical-align: middle;
-    width: 100%;
     height: auto;
     top: 0;
     left: 0;
     z-index: -1;
   }
-
-  ${media.phone`
-      height: 380px;
-  `}
   ${media.tablet`
-      height: 500px; 
+    height: 400px;
   `}
-  ${media.desktop`
-      height: 600px;
+  ${media.phone`
+    height: 270px;
   `}
 
 `

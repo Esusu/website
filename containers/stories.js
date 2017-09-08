@@ -63,7 +63,7 @@ export default class Stories extends React.Component {
                         <Image src={`${story.getImage('post.featured') ? story.getImage('post.featured').url : ''}`}/>
                         <Overlay>
                           <OverlayContent>
-                            <StyledImage src={`lorempixel.com/600/600/people`} />
+                            <StyledImage src={`http://lorempixel.com/600/600/people`} />
                             <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{story.getText('post.published')}</Paragraph>
                             <Subheading color="#9b9b9b" fontSize="0.8em">{story.getText('post.title')}</Subheading>
                           </OverlayContent>
