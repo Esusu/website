@@ -13,8 +13,8 @@ function InterestForm() {
     <Form action="//today.us13.list-manage.com/subscribe/post?u=4eeeaa948fad6530a9283e8ad&amp;id=243259a704" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
       <Flex>
         <Box>
-          <FormTitle>Android User?</FormTitle>
-          <FormSubheading>Get notified when we finish developing our android app.</FormSubheading>
+          <FormTitle>Stay in the Know</FormTitle>
+          <FormSubheading>Get notified when we release our beta on iOS.</FormSubheading>
           <Flex wrap>
             <Box width={1}>
               <FormField>

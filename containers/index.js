@@ -1,8 +1,10 @@
 import React from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
-
+import Prismic from 'prismic-javascript'
+import PrismicDOM from 'prismic-dom'
 import { 
   Section, 
   Block, 
@@ -13,21 +15,48 @@ import {
   Subheading,
   Paragraph,
   HR } from '../components/atoms/typography'
-
 import { media } from '../lib/helpers/prop-helpers'
-
 import { Button } from '../components/atoms/link'
-
 import InviteForm from '../components/organisms/inviteForm'
+import initApi from '../data/initApi'
 
 export default class extends React.Component {
-  static async getInitialProps({ req, query }) {
-    return {}
+
+  static async getInitialProps({req, query}) {
+    return {
+      req
+    }
+  }
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      page: null,
+    }
+  }
+
+  componentDidMount(){
+    this.getPage('home')
+  }
+
+  getPage(uid) {
+    initApi(this.props.req).then((api) => {
+      return api.getSingle(uid)
+    }).then((response) => {
+      this.setState({ 
+        page: response
+      })
+    })
   }
 
   render() {
-    return (
+    const { page } = this.state
+
+    return page && (
       <Wrapper>
+        <Head>
+          <title>{page.data.title}</title>
+        </Head>
         <Section>
           <Block>
             <VideoView>
@@ -42,7 +71,6 @@ export default class extends React.Component {
                 <source src="/static/esusu-highlight.mp4" 
                   type="video/mp4"
                 />
-                Video not supported by browser.
               </video>
               <VideoOverlay>
                 <Box width={[1]} p={[1, 2, 3, 4, 5, 6]}>

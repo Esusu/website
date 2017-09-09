@@ -1,35 +1,31 @@
 import React from 'react'
-import 'isomorphic-fetch'
-import { initApi } from '../data/initApi'
+import initApi from '../data/initApi'
 
-export default (Component) => (
+export default (WrappedComponent) => (
   class extends React.Component {
     static async getInitialProps(ctx) {
       const { req } = ctx
-      const isServer = !!req
-      const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
       const props =  {
         url: { query: ctx.query, pathname: ctx.pathname },
-        ...await (Component.getInitialProps ? Component.getInitialProps(ctx) : {})
+        ...await (WrappedComponent.getInitialProps ? WrappedComponent.getInitialProps(ctx) : {})
       }
-      
+
+      // initialize Prismic Client
+      initApi(req)
+
       return {
         req,
-        isServer,
-        userAgent,
         ...props
       }
     }
       
     constructor(props) {
       super(props)
-      this.client = initApi(this.props.req)
+      this.prismic = initApi(this.props.req)
     }
 
     render() {
-     return(
-        <Component prismicClient={this.client} />
-     )
+      return <WrappedComponent {...this.props} prismic={this.prismic} />
     }
   }
 )

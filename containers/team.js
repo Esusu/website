@@ -1,6 +1,9 @@
 import React from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
+import Prismic from 'prismic-javascript'
+import PrismicDOM from 'prismic-dom'
 import { Section, Block, Spacer } from '../components/atoms/layout'
 import {
   Title, 
@@ -8,25 +11,57 @@ import {
   Subheading,
   Paragraph } from '../components/atoms/typography'
 
+import initApi from '../data/initApi'
+
 export default class extends React.Component {
-  static async getInitialProps({ req, query }) {
-    return {}
+
+  static async getInitialProps({req, query}) {
+    return {
+      req
+    }
+  }
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      page: null,
+      team: null
+    }
+  }
+
+  componentDidMount(){
+    this.getPage('team')
+  }
+
+  getPage(uid) {
+    initApi(this.props.req).then((api) => {
+      return api.getByUID('page', uid)
+    }).then((response) => {
+      this.setState({ 
+        page: response
+      })
+    })
   }
 
   render() {
-    return (
+    const { page } = this.state
+
+    return page && (
       <Wrapper>
+        <Head>
+          <title>{page.data.metatitle}</title>
+        </Head>
         <Section>
           <Block center p={[4]}>
-            <Title color="#000" fontSize="3em" light>Meet Our Team</Title>
+            <Title color="#000" fontSize="3em" light>{PrismicDOM.RichText.asText(page.data.title)}</Title>
             <br />
-            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>Utterly Passionate About Changing the World</Paragraph>
+            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>{PrismicDOM.RichText.asText(page.data.description)}</Paragraph>
           </Block>
         </Section>
         <Section>
           <Block center>
             <Flex justify="center" wrap>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/samir-goel.jpg" />
                   <Overlay>
@@ -41,7 +76,7 @@ export default class extends React.Component {
                   </Overlay>
                 </Card>
               </Box>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/wemimo-abbey.jpg" />
                   <Overlay>
@@ -56,7 +91,7 @@ export default class extends React.Component {
                   </Overlay>
                 </Card>
               </Box>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/jeph-acheampong.jpg" />
                   <Overlay>
@@ -71,7 +106,7 @@ export default class extends React.Component {
                   </Overlay>
                 </Card>
               </Box>              
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/alterrique-iqram.jpg" />
                   <Overlay>
@@ -86,7 +121,7 @@ export default class extends React.Component {
                   </Overlay>
                   </Card>
               </Box>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/paul-dariye.jpg" />
                   <Overlay>
@@ -101,7 +136,7 @@ export default class extends React.Component {
                   </Overlay>
                   </Card>
               </Box>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/sophia-senyo.jpg" />
                   <Overlay>
@@ -116,7 +151,7 @@ export default class extends React.Component {
                   </Overlay>
                 </Card>
               </Box>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/robert-henning.jpg" />
                   <Overlay>
@@ -138,7 +173,7 @@ export default class extends React.Component {
           <Block center p={[4]}>
             <Subheading color="#000" fontSize="1.5em" light center uppercase>Advisors</Subheading>
             <Flex justify="center" wrap>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/bradley-michaelson.png" />
                   <Overlay>
@@ -153,7 +188,7 @@ export default class extends React.Component {
                   </Overlay>
                 </Card>
               </Box>
-              <Box p={[1, 2, 3, 4]} w={[1, 1/2, 1/3, 1/4]}>
+              <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/scott-taitel.png" />
                   <Overlay>
@@ -182,20 +217,23 @@ const Card = styled.div`
 /* box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10); */
 /* border-radius: 4px; */
   /* overflow: hidden; */
-position: relative;
-&:hover > div {
-  height: 100%;
-  width: 100%;
-}
+  width: 300px;
+  heigh: 300px;
+  position: relative;
+  &:hover > div {
+    height: 100%;
+    width: 100%;
+  }
 `
 
 const Image = styled.img`
-display: block;  
-width: 300px;
-height: auto;
-background: #F7F7F7;
-box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10);
-border-radius: 4px;
+  display: block;  
+  width: 300px;
+  height: 300px;
+  background: #F7F7F7;
+  box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10);
+  border-radius: 4px;
+  object-fit: cover;
 `
 const Overlay = styled.div`
 position: absolute;

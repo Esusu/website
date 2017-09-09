@@ -49,8 +49,3 @@ export default WrappedComponent => props => {
     </div>
   )
 }
-
-// // This is a simple hack to get styled-components to compile global styles
-// const Dummy = styled.span`
-//   display: none;
-// `

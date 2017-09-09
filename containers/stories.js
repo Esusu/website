@@ -1,9 +1,11 @@
 import React from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
-import Prismic from 'prismic.io'
-import 'isomorphic-fetch'
+import Prismic from 'prismic-javascript'
+import PrismicDOM from 'prismic-dom'
+import dateFormat from 'dateformat'
 
 import { Section, Block, Spacer } from '../components/atoms/layout'
 import {
@@ -12,60 +14,87 @@ import {
   Subheading,
   Paragraph } from '../components/atoms/typography'
 
-import { initApi } from '../data/initApi'
+import initApi from '../data/initApi'
 
-export default class Stories extends React.Component {
-  static async getInitialProps({ req }) {
+export default class extends React.Component {
+
+  static async getInitialProps({req, query}) {
     return {
       req
     }
   }
-
+  
   constructor(props) {
     super(props)
     this.state = {
-      stories: []
+      page: null,
+      stories: null
     }
   }
 
-  componentWillMount(){
+  componentDidMount(){
+    this.getPage('stories')
+    this.getStories()
+  }
+
+  getPage(uid) {
     initApi(this.props.req).then((api) => {
-      return api.query(
-        Prismic.Predicates.at('document.type', 'post'), 
-        { orderings: '[my.post.published desc]' }
-      )
+      return api.getByUID('page', uid)
     }).then((response) => {
       this.setState({ 
-        stories: response.results
+        page: response
       })
     })
   }
 
+  getStories() {
+    initApi(this.props.req).then((api) => {
+          return api.query(
+            Prismic.Predicates.at('document.type', 'post'),
+              { 
+                'fetch': ['post.title', 'post.published', 'post.featured', 'post.author' ],
+                'fetchLinks': 'author.headshot',
+                'orderings': '[my.post.published desc]' 
+              }
+            )
+      }).then((response) => {
+          this.setState({ 
+            stories: response.results
+          })
+      })
+  }
+
   render() {
-    const stories = this.state.stories
-    return (
+    const { 
+      page,
+      stories } = this.state
+
+    return page && stories && (
       <Wrapper>
+        <Head>
+          <title>{page.data.metaTitle}</title>
+        </Head>
         <Section>
           <Block center p={[4]}>
-            <Title color="#000" fontSize="3em" light>#EsusuStories: Empower Your Community</Title>
+            <Title color="#000" fontSize="3em" light>{PrismicDOM.RichText.asText(page.data.title)}</Title>
             <br />
-            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>To share your story, email jephthah@esusu.org</Paragraph>
+            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>{PrismicDOM.RichText.asText(page.data.description)}</Paragraph>
           </Block>
         </Section>
         <Section>
-          <Block center>
+          <Block>
             <Flex justify="center" wrap>
               { stories.map((story) => (
-                <Box p={[4]} w={[1, 1/2, 1/3, 1/4]}  key={story.id}>
+                <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}  key={story.id}>
                   <Link as={`/story/${story.uid}`} href={`/story?id=${story.uid}`}>
                     <a>
                       <Card>
-                        <Image src={`${story.getImage('post.featured') ? story.getImage('post.featured').url : ''}`}/>
+                        <Image src={`${story.data.featured.url}`}/>
                         <Overlay>
                           <OverlayContent>
-                            <StyledImage src={`http://lorempixel.com/600/600/people`} />
-                            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{story.getText('post.published')}</Paragraph>
-                            <Subheading color="#9b9b9b" fontSize="0.8em">{story.getText('post.title')}</Subheading>
+                            <StyledImage src={`${story.data.author.data.headshot.url}`} />
+                            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(PrismicDOM.Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
+                            <Subheading color="#9b9b9b" fontSize="0.8em">{PrismicDOM.RichText.asText(story.data.title)}</Subheading>
                           </OverlayContent>
                         </Overlay>
                       </Card>
@@ -86,11 +115,10 @@ const Wrapper = styled.div`
 `
 
 const Card = styled.div`
-/* background: #F7F7F7; */
-/* box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10); */
-/* border-radius: 4px; */
-  /* overflow: hidden; */
   position: relative;
+  width: 300px;
+  height: 300px;
+  text-align: center;
   &:hover > div {
     height: 100%;
     width: 100%;
@@ -111,10 +139,11 @@ const Image = styled.img`
 const StyledImage = styled.img`
   display: block;  
   width: 50px;
-  height: auto;
+  height: 50px;
   border-radius: 50%;
   margin: 0 auto;
   padding: 10px 0;
+  object-fit: cover;
 `
 const Overlay = styled.div`
   position: absolute;
@@ -133,10 +162,7 @@ const Overlay = styled.div`
 `
 
 const OverlayContent = styled.div`
-  /* white-space: nowrap;  */
   color: white;
-  /* font-size: 20px; */
-    /* position: absolute; */
   position: relative;
   overflow: hidden;
   top: 50%;

@@ -2,8 +2,7 @@ import React from 'react'
 let SS
 export default (WrappedComponent) => {
   return class extends React.Component {
-    static async getInitialProps(ctx) {
-      const { req } = ctx
+    static async getInitialProps() {
       let props = {}
       if(WrappedComponent.getInitialProps) {
         props = await WrappedComponent.getInitialProps(ctx);
@@ -14,10 +13,6 @@ export default (WrappedComponent) => {
       }
     }
 
-    constructor(props) {
-      super(props)
-    }
-
     componentDidMount() {
       if(window && !SS) {
         SS = require('smoothscroll-polyfill').polyfill()
@@ -26,7 +21,9 @@ export default (WrappedComponent) => {
 
     render() {
       return (
+        <div>
           <WrappedComponent {...this.props} />
+        </div>
       );
     }
   }

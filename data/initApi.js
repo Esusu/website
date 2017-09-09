@@ -1,11 +1,22 @@
-import Prismic from 'prismic.io'
+import Prismic from 'prismic-javascript'
 import config from '../prismic-config'
 
-let client = null
+let prismicClient = null
 
-export const initApi = (req = null) => {
-  return req 
-    ? Prismic.getApi(config.apiEndpoint, { req: req }) 
-    : Prismic.getApi(config.apiEndpoint)
+
+function create(req){
+  return Prismic.getApi(config.apiEndpoint, { req: req })
+}
+
+export default function initApi(req) {
+  if(!process.browser) {
+    return create(req)
+  }
+
+  if(!prismicClient) {
+    prismicClient = create(req)
+  }
+
+  return prismicClient
 }
 

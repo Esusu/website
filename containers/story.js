@@ -2,15 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
 import { Section, Block, Spacer } from '../components/atoms/layout'
-import Prismic from 'prismic.io'
+import PrismicDOM from 'prismic-dom'
 import dateFormat from 'dateformat'
-import 'isomorphic-fetch'
 import {
   Title, 
   Subtitle,
   Subheading,
   Paragraph } from '../components/atoms/typography'
-import { initApi } from '../data/initApi'
+import initApi from '../data/initApi'
 
 export default class Story extends React.Component {
   static async getInitialProps({req, query}) {
@@ -25,45 +24,47 @@ export default class Story extends React.Component {
     super(props)
     this.state = {
       story: null,
-      author: null
     }
   }
-  // getAuthorByID(id) {
-  //   initApi().then((api) => {
-  //       return api.getByID(id)
-  //   }).then((response) => {
-  //     this.setState({
-  //       author: response
-  //     })
-  //   })
-  //
-  // }
 
-  componentWillMount(){
+  componentDidMount(){
     const uid = this.props.url.query.id || this.props.id
-    initApi().then((api) => {
-      return api.getByUID('post', uid)
+    initApi(this.props.req).then((api) => {
+      return api.getByUID('post', uid,
+          { 
+            'fetchLinks': ['author.headshot', 'author.name'],
+          }
+        )
     }).then((response) => {
-      this.setState({
+      this.setState({ 
         story: response
       })
     })
+
   }
 
   render() {
-    console.log(this.props.id)
-    const story = this.state.story
+    const { story } = this.state
     return story && (
       <Wrapper>
-        <Section>
-          <Block p={[4]} left>
-            <Back href="/stories">Back to Stories</Back><br /><br />
-            <StyledImage src="http://lorempixel.com/300/300/people/" />
-            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(story.getDate('post.published'), 'mmmm dS, yyyy')}</Paragraph>
-            <Title color="#000" fontSize="3em" light>{story.getText('post.title')}</Title>
-            <br />
-            <RichTextView 
-              dangerouslySetInnerHTML={{__html: story.getStructuredText('post.content').asHtml()}} />
+        <Section maxWidth="50em">
+          <Block p={[4]}>
+            <Flex justify="center" align="center">
+              <Box pl={4} pr={4} pt={2}>
+                <FeaturedImage src={`${story.data.featured.url}`} />
+                <Spacer />
+                <Flex justify="center">
+                  <Box w={2/3}>
+                    <Title color="#000" fontSize="3em" light>{PrismicDOM.RichText.asText(story.data.title)}</Title>
+                    <StyledImage src={`${story.data.author.data.headshot.url}`} />
+                    <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(PrismicDOM.Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
+                    <br />
+                    <RichTextView 
+                      dangerouslySetInnerHTML={{__html: PrismicDOM.RichText.asHtml(story.data.content)}} />
+                  </Box>
+                </Flex>
+              </Box>
+            </Flex>
           </Block>
         </Section>
       </Wrapper>
@@ -107,7 +108,8 @@ const Image = styled.img`
 const StyledImage = styled.img`
   display: block;  
   width: 50px;
-  height: auto;
+  height: 50px;
+  object-fit: cover;
   border-radius: 50%;
   /* margin: 0 auto; */
   padding: 10px 0;
@@ -170,9 +172,18 @@ const Link = styled.a`
   color: inherit;
 `
 
+const FeaturedImage = styled.img`
+  width: 100%;
+  max-height: 25em;
+  position: relative;
+  object-fit: cover;
+`
+
 const RichTextView = styled.div`
+  /* max-width: 46em; */
   & > p {
     font-size: 1em;
     color: #4a4a4a;
   }
 `
+
