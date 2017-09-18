@@ -1,8 +1,9 @@
 import React from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
 import { Section, Block, Spacer } from '../components/atoms/layout'
-import PrismicDOM from 'prismic-dom'
+import {RichText, Date} from 'prismic-dom'
 import dateFormat from 'dateformat'
 import {
   Title, 
@@ -47,6 +48,9 @@ export default class Story extends React.Component {
     const { story } = this.state
     return story && (
       <Wrapper>
+        <Head>
+          <title>{story.data.metatitle}</title>
+        </Head>
         <Section maxWidth="50em">
           <Block p={[4]}>
             <Flex justify="center" align="center">
@@ -55,12 +59,12 @@ export default class Story extends React.Component {
                 <Spacer />
                 <Flex justify="center">
                   <Box w={2/3}>
-                    <Title color="#000" fontSize="3em" light>{PrismicDOM.RichText.asText(story.data.title)}</Title>
+                    <Title color="#000" fontSize="3em" light>{RichText.asText(story.data.title)}</Title>
                     <StyledImage src={`${story.data.author.data.headshot.url}`} />
-                    <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(PrismicDOM.Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
+                    <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
                     <br />
                     <RichTextView 
-                      dangerouslySetInnerHTML={{__html: PrismicDOM.RichText.asHtml(story.data.content)}} />
+                      dangerouslySetInnerHTML={{__html: RichText.asHtml(story.data.content)}} />
                   </Box>
                 </Flex>
               </Box>

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
 import Prismic from 'prismic-javascript'
-import PrismicDOM from 'prismic-dom'
+import {RichText, Date} from 'prismic-dom'
 import dateFormat from 'dateformat'
 
 import { Section, Block, Spacer } from '../components/atoms/layout'
@@ -72,13 +72,13 @@ export default class extends React.Component {
     return page && stories && (
       <Wrapper>
         <Head>
-          <title>{page.data.metaTitle}</title>
+          <title>{page.data.metatitle}</title>
         </Head>
         <Section>
           <Block center p={[4]}>
-            <Title color="#000" fontSize="3em" light>{PrismicDOM.RichText.asText(page.data.title)}</Title>
+            <Title color="#000" fontSize="3em" light>{RichText.asText(page.data.title)}</Title>
             <br />
-            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>{PrismicDOM.RichText.asText(page.data.description)}</Paragraph>
+            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>{RichText.asText(page.data.description)}</Paragraph>
           </Block>
         </Section>
         <Section>
@@ -93,8 +93,8 @@ export default class extends React.Component {
                         <Overlay>
                           <OverlayContent>
                             <StyledImage src={`${story.data.author.data.headshot.url}`} />
-                            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(PrismicDOM.Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
-                            <Subheading color="#9b9b9b" fontSize="0.8em">{PrismicDOM.RichText.asText(story.data.title)}</Subheading>
+                            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
+                            <Subheading color="#9b9b9b" fontSize="0.8em">{RichText.asText(story.data.title)}</Subheading>
                           </OverlayContent>
                         </Overlay>
                       </Card>
