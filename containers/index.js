@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
 import Prismic from 'prismic-javascript'
-import PrismicDOM from 'prismic-dom'
+import {RichText} from 'prismic-dom'
 import { 
   Section, 
   Block, 
@@ -51,7 +51,7 @@ export default class extends React.Component {
 
   render() {
     const { page } = this.state
-
+    // console.log(page.data.hero[0].callToActionText)
     return page && (
       <Wrapper>
         <Head>
@@ -74,40 +74,37 @@ export default class extends React.Component {
               </video>
               <VideoOverlay>
                 <Box width={[1]} p={[1, 2, 3, 4, 5, 6]}>
-                  <Title color="#fff">Save income collectively</Title>
-                  {/* <Subheading color="#fff">Simple. Secure. Sustainable.</Subheading> */}
-                  <Paragraph color="#fff">Collect and save money with your personal communities.</Paragraph>
+                  <Title color="#fff">{RichText.asText(page.data.hero[0].title)}</Title>
+                  <Paragraph color="#fff">{RichText.asText(page.data.hero[0].subtitle)}</Paragraph>
                   <Spacer />
                   <Button href="#mc-embedded-subscribe-form">Request Early Access</Button>
-                  {/* <Spacer />  */}
-                  {/* <Paragraph color="#fff"><PlayIcon src="/static/play-icon.png" />The Esusu Promise</Paragraph> */}
                 </Box>
               </VideoOverlay>
             </VideoView>
           </Block> 
         </Section> 
-        <Section>
-          <Block>
-            <Flex justify="center" align="center" wrap column>
-              <Box width={1}>
-                <PressCoverageBox  p={[1]}>
-                  <Flex justify="center" align="center" wrap column>
-                    <Box width={1}>
-                      <Paragraph color="#000">Featured in ...</Paragraph>
-                    </Box>
-                    <Box width={1} pt={2}>
-                      <Flex justify="center" align="center" wrap column>
-                        <Box>
-                          <CoverageImage src="/static/teenvogue.svg" alt="Esusu Inc Feature - TeenVogue" />
-                        </Box>
-                      </Flex>
-                    </Box>
-                  </Flex>
-                </PressCoverageBox>
-              </Box>
-            </Flex>
-          </Block>
-        </Section>
+        {/* <Section> */}
+        {/*   <Block> */}
+        {/*     <Flex justify="center" align="center" wrap column> */}
+        {/*       <Box width={1}> */}
+        {/*         <PressCoverageBox  p={[1]}> */}
+        {/*           <Flex justify="center" align="center" wrap column> */}
+        {/*             <Box width={1}> */}
+        {/*               <Paragraph color="#000">Featured in ...</Paragraph> */}
+        {/*             </Box> */}
+        {/*             <Box width={1} pt={2}> */}
+        {/*               <Flex justify="center" align="center" wrap column> */}
+        {/*                 <Box> */}
+        {/*                   <CoverageImage src="/static/teenvogue.svg" alt="Esusu Inc Feature - TeenVogue" /> */}
+        {/*                 </Box> */}
+        {/*               </Flex> */}
+        {/*             </Box> */}
+        {/*           </Flex> */}
+        {/*         </PressCoverageBox> */}
+        {/*       </Box> */}
+        {/*     </Flex> */}
+        {/*   </Block> */}
+        {/* </Section> */}
         <Section marginTop="5em">
           <Block>
             <Flex justify="center" align="center" wrap column>

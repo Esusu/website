@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
 import Prismic from 'prismic-javascript'
-import PrismicDOM from 'prismic-dom'
+import { RichText } from 'prismic-dom'
 
 import { 
   Section, 
@@ -16,7 +16,6 @@ import {
   Subheading,
   Paragraph,
   HR } from '../components/atoms/typography'
-
 
 import initApi from '../data/initApi'
 
@@ -59,15 +58,14 @@ export default class extends React.Component {
         </Head>
         <Section>
           <Block center p={[4]}>
-            <Title color="#000" fontSize="3em" light>{PrismicDOM.RichText.asText(page.data.title)}</Title>
+            <Title color="#000" fontSize="3em" light>{RichText.asText(page.data.title)}</Title>
           </Block>
         </Section>
         <Section >
           <Block>
             <Flex column>
              <Box width={1} p={[1, 2, 3, 4]}>
-              <RichTextView 
-                dangerouslySetInnerHTML={{__html: PrismicDOM.RichText.asHtml(page.data.content)}} />
+              <RichTextView dangerouslySetInnerHTML={{__html: RichText.asHtml(page.data.content)}} />
               </Box>
             </Flex>
           </Block>
