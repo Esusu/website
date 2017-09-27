@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import env from '../config'
+const key = 'JdYqpw8TPTABZSdZxOfr0j2WPNYoKl0D'
 let Analytics
 export default (WrappedComponent) => {
   return class extends Component {
@@ -21,11 +21,10 @@ export default (WrappedComponent) => {
 
     componentDidMount() {
       if(window && !Analytics) {
-        Analytics = require('../lib/segment')
-        analytics.load(env.SEGMENT_WRITE_KEY)
-      } else {
-        analytics.load(env.SEGMENT_WRITE_KEY)
+        Analytics = require('../lib/segment/segment')
+        window.analytics.load(key)
       }
+      window.analytics.page()
     }
 
     render() {

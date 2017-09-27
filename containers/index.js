@@ -345,6 +345,7 @@ const VideoView = styled.div`
     position: relative;
     vertical-align: middle;
     height: auto;
+    width: 100%;
     top: 0;
     left: 0;
     z-index: -1;

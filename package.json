@@ -6,6 +6,9 @@
   "repository": "git@github.com:Esusu/website.git",
   "author": "Paul Dariye <paul.dariye@gmail.com>",
   "license": "UNLICENSED",
+  "now": {
+    "alias": "esusu.today"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
