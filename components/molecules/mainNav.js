@@ -19,7 +19,7 @@ export default (props) => (
     </Menu>
     <Menu>
       <MenuItem>
-        <NavImage src="/static/apple-app-store-badge.svg" />
+        {/* <NavImage src="/static/apple-app-store-badge.svg" /> */}
       </MenuItem>
     </Menu>
   </Navigation>

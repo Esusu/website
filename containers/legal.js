@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
 
@@ -21,6 +22,9 @@ export default class extends React.Component {
   render() {
     return (
       <Wrapper>
+        <Head>
+          <title>Esusu | Legal Information & Notices</title>
+        </Head>
         <Section>
           <Block p={[4]} center>
             <Title color="#000" fontSize="3em" light>Legal Information & Notices</Title>

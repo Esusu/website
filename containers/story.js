@@ -1,44 +1,73 @@
 import React from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import { Flex, Box } from 'grid-styled'
 import { Section, Block, Spacer } from '../components/atoms/layout'
+import {RichText, Date} from 'prismic-dom'
+import dateFormat from 'dateformat'
 import {
   Title, 
   Subtitle,
   Subheading,
   Paragraph } from '../components/atoms/typography'
+import initApi from '../data/initApi'
 
-export default class extends React.Component {
-  static async getInitialProps({ query: { title } }) {
-    return {title}
+export default class Story extends React.Component {
+  static async getInitialProps({req, query}) {
+    const  { id  } = query
+    return {
+      id,
+      req,
+    }
+  }
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      story: null,
+    }
+  }
+
+  componentDidMount(){
+    const uid = this.props.url.query.id || this.props.id
+    initApi(this.props.req).then((api) => {
+      return api.getByUID('post', uid,
+          { 
+            'fetchLinks': ['author.headshot', 'author.name'],
+          }
+        )
+    }).then((response) => {
+      this.setState({ 
+        story: response
+      })
+    })
+
   }
 
   render() {
-    const title = this.props.url.query.title
-    return (
+    const { story } = this.state
+    return story && (
       <Wrapper>
-        <Section>
-          <Block p={[4]} left>
-            <Back href="/stories">Back to Stories</Back><br /><br />
-            <StyledImage src="http://lorempixel.com/300/300/people/" />
-            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>17 Sep 2017</Paragraph>
-            <Title color="#000" fontSize="3em" light>{title}</Title>
-            <br />
-            <Paragraph color="#4a4a4a" fontSize="1em">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a arcu pretium, vestibulum mauris a, bibendum tortor. Curabitur non rutrum felis. Nunc a sagittis urna. Sed tempor nunc et interdum efficitur. Sed ullamcorper commodo nulla non eleifend. In hac habitasse platea dictumst. Vivamus condimentum metus ligula. Etiam cursus fringilla porta. Morbi sit amet ultrices nisl.
-          </Paragraph><br />
-              <Paragraph color="#4a4a4a" fontSize="1em">
-        In ultrices nisi tellus. Integer urna mi, consectetur a nisi at, venenatis varius nibh. Morbi convallis quam nec sem cursus, in rhoncus magna porttitor. Curabitur lacinia sollicitudin orci. Vestibulum scelerisque nec odio id pretium. Nulla condimentum eros sem, molestie tempus odio condimentum a. Cras vestibulum tincidunt rhoncus. Integer faucibus sapien non augue pharetra, in maximus lectus finibus. Praesent in interdum ante. Duis accumsan feugiat consequat.
-      </Paragraph><br />
-      <Paragraph color="#4a4a4a" fontSize="1em">
-        Vivamus aliquet velit id justo ornare egestas. Nunc lacinia feugiat sapien quis dignissim. Maecenas porta, metus sit amet maximus vulputate, lectus urna fermentum ipsum, vitae tristique lacus nibh eu urna. In elementum justo ut est ullamcorper pellentesque. Sed faucibus consectetur bibendum. Vestibulum viverra velit ut orci consequat tincidunt. Sed sem orci, interdum vitae quam vel, mattis tempus nunc. Nunc feugiat neque non ex consequat aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-      </Paragraph>
-<Paragraph color="#4a4a4a" fontSize="1em">
-  Etiam nec egestas ipsum. Aliquam orci magna, sagittis vestibulum bibendum sit amet, auctor ac justo. Sed sem purus, tincidunt et risus eget, tristique tempus dolor. Integer gravida ullamcorper nibh in pellentesque. Aenean sit amet est vitae ligula tempor varius. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla sed tortor elit. Curabitur efficitur orci in odio ullamcorper imperdiet. Sed quis finibus odio. Nullam eget eleifend lorem. In pellentesque vel turpis id tempus. Ut sed nisi felis.
-</Paragraph><br />
-      <Paragraph color="#4a4a4a" fontSize="1em">
-  Phasellus luctus velit diam, non tristique augue auctor quis. Aenean ac libero commodo, feugiat metus tristique, laoreet nisi. Vivamus fermentum, neque eu ultrices posuere, justo justo faucibus velit, quis feugiat metus leo quis mauris. Sed nulla lacus, cursus at aliquet sit amet, tempor nec velit. Duis aliquam, felis in pulvinar tristique, sem nulla vehicula mauris, at consectetur tortor eros nec massa. Nam lobortis magna nec malesuada dictum. Quisque sapien nunc, commodo et egestas id, blandit non purus. Quisque nec enim massa. Integer condimentum tincidunt facilisis.
-</Paragraph><br />
+        <Head>
+          <title>{story.data.metatitle}</title>
+        </Head>
+        <FeaturedImage src={`${story.data.featured.url}`} />
+        <Section maxWidth="50em" marginTop="2em">
+          <Block>
+            <Flex justify="center" align="center">
+              <Box>
+                <Flex justify="center">
+                  <Box w={2/3}>
+                    <Title color="#000" fontSize="3em" light>{RichText.asText(story.data.title)}</Title>
+                    <StyledImage src={`${story.data.author.data.headshot.url}`} />
+                    <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
+                    <br />
+                    <RichTextView 
+                      dangerouslySetInnerHTML={{__html: RichText.asHtml(story.data.content)}} />
+                  </Box>
+                </Flex>
+              </Box>
+            </Flex>
           </Block>
         </Section>
       </Wrapper>
@@ -82,7 +111,8 @@ const Image = styled.img`
 const StyledImage = styled.img`
   display: block;  
   width: 50px;
-  height: auto;
+  height: 50px;
+  object-fit: cover;
   border-radius: 50%;
   /* margin: 0 auto; */
   padding: 10px 0;
@@ -144,3 +174,21 @@ const Link = styled.a`
   border-bottom: 1px solid;
   color: inherit;
 `
+
+const FeaturedImage = styled.img`
+  width: 100%;
+  max-height: 30em;
+  position: relative;
+  object-fit: cover;
+`
+
+const RichTextView = styled.div`
+  /* max-width: 46em; */
+  & > p {
+    font-size: 1.2em;
+    line-height: 1.8em;
+    font-weight: 400;
+    color: #4a4a4a;
+  }
+`
+

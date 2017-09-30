@@ -1,56 +1,107 @@
 import React from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Flex, Box } from 'grid-styled'
+import Prismic from 'prismic-javascript'
+import {RichText, Date} from 'prismic-dom'
+import dateFormat from 'dateformat'
+
 import { Section, Block, Spacer } from '../components/atoms/layout'
 import {
   Title, 
   Subtitle,
   Subheading,
   Paragraph } from '../components/atoms/typography'
-//
-// const PostLink = (props) => (
-//   <Link as={`/story/${props.id}`} href={`/store`} />
-// )
+
+import initApi from '../data/initApi'
 
 export default class extends React.Component {
-  static async getInitialProps({ req, query }) {
-    return {}
+
+  static async getInitialProps({req, query}) {
+    return {
+      req
+    }
+  }
+  
+  constructor(props) {
+    super(props)
+    this.state = {
+      page: null,
+      stories: null
+    }
+  }
+
+  componentDidMount(){
+    this.getPage('stories')
+    this.getStories()
+  }
+
+  getPage(uid) {
+    initApi(this.props.req).then((api) => {
+      return api.getByUID('page', uid)
+    }).then((response) => {
+      this.setState({ 
+        page: response
+      })
+    })
+  }
+
+  getStories() {
+    initApi(this.props.req).then((api) => {
+          return api.query(
+            Prismic.Predicates.at('document.type', 'post'),
+              { 
+                'fetch': ['post.title', 'post.published', 'post.featured', 'post.author' ],
+                'fetchLinks': 'author.headshot',
+                'orderings': '[my.post.published desc]' 
+              }
+            )
+      }).then((response) => {
+          this.setState({ 
+            stories: response.results
+          })
+      })
   }
 
   render() {
-    return (
+    const { 
+      page,
+      stories } = this.state
+
+    return page && stories && (
       <Wrapper>
+        <Head>
+          <title>{page.data.metatitle}</title>
+        </Head>
         <Section>
           <Block center p={[4]}>
-            <Title color="#000" fontSize="3em" light>#EsusuStories: Empower Your Community</Title>
+            <Title color="#000" fontSize="3em" light>{RichText.asText(page.data.title)}</Title>
             <br />
-            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>To share your story, email jephthah@esusu.org</Paragraph>
+            <Paragraph color="#9B9B9B" fontSize="1.5em" italicize>{RichText.asText(page.data.description)}</Paragraph>
           </Block>
         </Section>
         <Section>
-          <Block center>
+          <Block>
             <Flex justify="center" wrap>
-              { Array.from({length: 20}, () => Math.floor(Math.random() * 20))
-                  .map((i) => (
-                    <Box p={[4]} w={[1, 1/2, 1/3, 1/4]}  key={i.toString()}>
-                      <Link as={`/story/${i}`} href={`/story?title=${i}`}>
-                        <a>
-                          <Card>
-                            <Image src="http://lorempixel.com/600/600/nature/"/>
-                            <Overlay>
-                              <OverlayContent>
-                                <StyledImage src="http://lorempixel.com/300/300/people/" />
-                                <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>17 Sep 2017</Paragraph>
-                                <Subheading color="#9b9b9b" fontSize="0.8em">This is a title</Subheading>
-                              </OverlayContent>
-                            </Overlay>
-                          </Card>
-                        </a>
-                      </Link>
-                    </Box>
-                  ))
-              }
+              { stories.map((story) => (
+                <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}  key={story.id}>
+                  <Link as={`/story/${story.uid}`} href={`/story?id=${story.uid}`}>
+                    <a>
+                      <Card>
+                        <Image src={`${story.data.featured.url}`}/>
+                        <Overlay>
+                          <OverlayContent>
+                            <StyledImage src={`${story.data.author.data.headshot.url}`} />
+                            <Paragraph color="#9b9b9b" fontSize="0.5em" uppercase>{dateFormat(Date(story.data.published), 'mmmm dS, yyyy')}</Paragraph>
+                            <Subheading color="#9b9b9b" fontSize="0.8em">{RichText.asText(story.data.title)}</Subheading>
+                          </OverlayContent>
+                        </Overlay>
+                      </Card>
+                    </a>
+                  </Link>
+                </Box>
+              ))}
             </Flex>
           </Block>
         </Section>
@@ -64,11 +115,9 @@ const Wrapper = styled.div`
 `
 
 const Card = styled.div`
-/* background: #F7F7F7; */
-/* box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10); */
-/* border-radius: 4px; */
-  /* overflow: hidden; */
   position: relative;
+  text-align: center;
+  margin: 0 auto;
   &:hover > div {
     height: 100%;
     width: 100%;
@@ -78,20 +127,22 @@ const Card = styled.div`
 
 const Image = styled.img`
   display: block;  
-  width: 300px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   background: #F7F7F7;
   box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10);
   border-radius: 4px;
+  object-fit: cover;
 `
 
 const StyledImage = styled.img`
   display: block;  
   width: 50px;
-  height: auto;
+  height: 50px;
   border-radius: 50%;
   margin: 0 auto;
   padding: 10px 0;
+  object-fit: cover;
 `
 const Overlay = styled.div`
   position: absolute;
@@ -110,10 +161,7 @@ const Overlay = styled.div`
 `
 
 const OverlayContent = styled.div`
-  /* white-space: nowrap;  */
   color: white;
-  /* font-size: 20px; */
-    /* position: absolute; */
   position: relative;
   overflow: hidden;
   top: 50%;

@@ -40,7 +40,8 @@ export default WrappedComponent => props => {
       font-style: light;
     }
     p {
-      font-size: 0.875em;
+    font-size: 1.2em;
+    line-height: 1.8em;
     }
   `
   return (
@@ -49,8 +50,3 @@ export default WrappedComponent => props => {
     </div>
   )
 }
-
-// // This is a simple hack to get styled-components to compile global styles
-// const Dummy = styled.span`
-//   display: none;
-// `

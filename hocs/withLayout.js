@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Overdrive from 'react-overdrive'
 import Header from '../components/organisms/header'
 import Footer from '../components/organisms/footer'
 
@@ -20,8 +20,10 @@ export default (WrappedComponent) => (
     return (
       <div>
         <Header url={this.props.url}/>
-        <main>
-          <WrappedComponent {...this.props} />
+        <main style={{ overflow: 'hidden' }}>
+          <Overdrive id="content">
+            <WrappedComponent {...this.props} />
+          </Overdrive>
         </main>
         <Footer />
       </div>
