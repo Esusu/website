@@ -1,6 +1,8 @@
 const dev = process.env.NODE_ENV !== 'production'
 const PORT = process.env.PORT || 3000
 
+const path = require('path')
+
 const express = require('express')
 const next = require('next')
 const LRUCache = require('lru-cache')
@@ -77,8 +79,8 @@ app.prepare()
     cachedRender(req, res, '/story', queryParams)
   })
 
-  server.get('*', (req, res) => {
-    return handle(req, res)
+  server.get('/sw.js', (req, res) => {
+    res.sendFile(path.resolve('./.next/sw.js'))
   })
 
   server.use('/static', express.static('./static', {
@@ -86,6 +88,10 @@ app.prepare()
     index: false,
     redirect: false
   }))
+
+  server.get('*', (req, res) => {
+    return handle(req, res)
+  })
 
   server.listen(3000, (err) => {
     if (err) throw err
