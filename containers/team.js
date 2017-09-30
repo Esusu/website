@@ -91,6 +91,8 @@ export default class extends React.Component {
                   </Overlay>
                 </Card>
               </Box>
+            </Flex>
+            <Flex justify="center" wrap>
               <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
                 <Card>
                   <Image src="/static/jeph-acheampong.jpg" />
@@ -170,7 +172,7 @@ export default class extends React.Component {
           </Block>
         </Section>
         <Section>
-          <Block center p={[4]}>
+          <Block center>
             <Subheading color="#000" fontSize="1.5em" light center uppercase>Advisors</Subheading>
             <Flex justify="center" wrap>
               <Box p={[1, 2, 3]} w={[1, 1/2, 1/3, 1/4]}>
@@ -218,8 +220,9 @@ const Card = styled.div`
 /* border-radius: 4px; */
   /* overflow: hidden; */
   width: 300px;
-  heigh: 300px;
+  height: 300px;
   position: relative;
+  margin: 0 auto;
   &:hover > div {
     height: 100%;
     width: 100%;

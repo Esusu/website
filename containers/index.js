@@ -137,14 +137,6 @@ export default class extends React.Component {
               </Box>
               <Box width={1}>
                 <Flex justify="center" wrap>
-                  {/* <Box p={[1, 2]} w={[1, 1/4, 1/4]}> */}
-                  {/*   <Card> */}
-                  {/*     <Step>1</Step> */}
-                  {/*     <Desc>Download App</Desc> */}
-                  {/*     <Overlay> */}
-                  {/*     </Overlay> */}
-                  {/*   </Card> */}
-                  {/* </Box> */}
                   <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
                     <Card>
                       <Step>1</Step>
@@ -230,6 +222,7 @@ const Card = styled.div`
   width: 15em;
   height: 15em;
   position: relative;
+  margin: 0 auto;
   &:hover > div {
     height: 100%;
     width: 100%;

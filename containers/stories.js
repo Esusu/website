@@ -116,9 +116,8 @@ const Wrapper = styled.div`
 
 const Card = styled.div`
   position: relative;
-  width: 300px;
-  height: 300px;
   text-align: center;
+  margin: 0 auto;
   &:hover > div {
     height: 100%;
     width: 100%;
@@ -128,8 +127,8 @@ const Card = styled.div`
 
 const Image = styled.img`
   display: block;  
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   background: #F7F7F7;
   box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10);
   border-radius: 4px;

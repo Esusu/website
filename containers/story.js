@@ -51,12 +51,11 @@ export default class Story extends React.Component {
         <Head>
           <title>{story.data.metatitle}</title>
         </Head>
-        <Section maxWidth="50em">
-          <Block p={[4]}>
+        <FeaturedImage src={`${story.data.featured.url}`} />
+        <Section maxWidth="50em" marginTop="2em">
+          <Block>
             <Flex justify="center" align="center">
-              <Box pl={4} pr={4} pt={2}>
-                <FeaturedImage src={`${story.data.featured.url}`} />
-                <Spacer />
+              <Box>
                 <Flex justify="center">
                   <Box w={2/3}>
                     <Title color="#000" fontSize="3em" light>{RichText.asText(story.data.title)}</Title>
@@ -178,7 +177,7 @@ const Link = styled.a`
 
 const FeaturedImage = styled.img`
   width: 100%;
-  max-height: 25em;
+  max-height: 30em;
   position: relative;
   object-fit: cover;
 `
@@ -186,7 +185,9 @@ const FeaturedImage = styled.img`
 const RichTextView = styled.div`
   /* max-width: 46em; */
   & > p {
-    font-size: 1em;
+    font-size: 1.2em;
+    line-height: 1.8em;
+    font-weight: 400;
     color: #4a4a4a;
   }
 `
