@@ -40,8 +40,7 @@ export default WrappedComponent => props => {
       font-style: light;
     }
     p {
-    font-size: 1.2em;
-    line-height: 1.8em;
+    font-size: 0.875em;
     }
   `
   return (
