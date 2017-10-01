@@ -26,6 +26,7 @@ export default class Page extends Document {
           <meta name="msapplication-navbutton-color" content="#198F45"/>
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
           <meta name="msapplication-starturl" content="/"/>
+          <meta name="google-site-verification" content="-FtaW8Ltp3gNj-b3DWn8d0SZlA5pE0zb40Z5qrFjxI8" />
           <link rel="manifest" href="/static/manifest.json"/>
           <link rel="shortcut icon" href="/static/esusu.ico" />
           <link rel="icon" type="image/png" sizes="128x128" href="/static/esusu@128x128.png"/>
