@@ -116,14 +116,7 @@ export default class extends React.Component {
               </Box>
               <Box>
                 <RoscaVideoView>
-                  <video
-                    autoPlay
-                    loop
-                  >
-                    <source src="/static/rosca.mp4" type="video/mp4" />
-                    <img src="/static/rosca.gif" />
-                    Your browser doesn't have support for video
-                  </video>
+                  <img src="/static/rosca.gif" />
                 </RoscaVideoView>
               </Box>
             </Flex>
@@ -366,13 +359,10 @@ const VideoOverlay = styled(Flex)`
 
 const RoscaVideoView = styled.div`
   position: relative;
-
-  & > video {
-    width: 400px;
-    height: auto;
-
+  & > img {
+    width: 30rem;
     ${media.phone`
-      width: 300px;
+      width: 20rem;
     `}
   }
 `
