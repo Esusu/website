@@ -63,6 +63,7 @@ export default class extends React.Component {
               <video 
                 muted
                 autoPlay
+                playsInline
                 loop
               >
                 <source src="/static/esusu-highlight.webm" 
@@ -328,13 +329,16 @@ const VideoView = styled.div`
     background: rgba(25,29,34,0.75);
   }
   & > video {
-    position: relative;
-    vertical-align: middle;
-    height: auto;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    position: absolute; 
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto; 
+    z-index: -100;
+    background-size: cover;
+    overflow: hidden;
   }
   ${media.tablet`
     height: 400px;
