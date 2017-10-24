@@ -109,15 +109,13 @@ export default class extends React.Component {
         <Section marginTop="5em">
           <Block>
             <Flex justify="center" align="center" wrap column>
-              <Box width={1}>
+              <Box w={[1, 1/2]}>
                 <Subheading color="#60C091"center>Collective Savings 101</Subheading>
                 <Paragraph color="#000" center>Manage your collective sum and organize each pay period to a different person.</Paragraph>
-                  <Spacer />
-
               </Box>
-              <Box>
+              <Box w={[1, 1/2]} p={[1, 2, 3, 4]}>
                 <RoscaVideoView>
-                  <img src="/static/rosca.gif" />
+                  <iframe src="https://spark.adobe.com/video/5n0EP/embed" width="960" height="540" frameBorder="0" allowfullscreen></iframe>
                 </RoscaVideoView>
               </Box>
             </Flex>
@@ -363,10 +361,14 @@ const VideoOverlay = styled(Flex)`
 
 const RoscaVideoView = styled.div`
   position: relative;
-  & > img {
-    width: 30rem;
-    ${media.phone`
-      width: 20rem;
-    `}
+  padding-bottom: 56.25%;
+  padding-top: 25px;
+  height: 0;
+  & > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 `
