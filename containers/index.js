@@ -111,7 +111,6 @@ export default class extends React.Component {
             <Flex justify="center" align="center" wrap column>
               <Box w={[1, 1/2]}>
                 <Subheading color="#60C091"center>Collective Savings 101</Subheading>
-                <Paragraph color="#000" center>Manage your collective sum and organize each pay period to a different person.</Paragraph>
               </Box>
               <Box w={[1, 1/2]} p={[1, 2, 3, 4]}>
                 <RoscaVideoView>
@@ -167,8 +166,7 @@ export default class extends React.Component {
             <Flex justify="center" align="flex-end" wrap>
               <Box width={[1, 1/2]} p={[ 1, 2, 3, 4 ]}>
                 <HR width="20" />
-                <Subheading color="#ABABAB">Save Together. <br/>Build Community. <br/>Be Empowered.</Subheading>
-                <Paragraph>Esusu could be best classified as purpose-first and we are entirely committed to our vision of generating equitable financial access. As such we reinvest the majority of our net margin toward furthering this vision.</Paragraph>
+                <Subheading color="#4A4A4A">Save Together. <br/>Build Community. <br/>Be Empowered.</Subheading>
                 <Spacer />
               </Box>
               <Box width={[1, 1/2]}>

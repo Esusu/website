@@ -41,13 +41,14 @@ export default class extends React.Component {
               <Box>
                  <TextWrapper>
                    <Subtitle fontSize="1.25em" color="#4A4A4A">Terms of Service</Subtitle>
-                   <Subtitle fontSize="1em" color="#60c091" light uppercase>Last Updated: June 1, 2017</Subtitle>
+                   <Subtitle fontSize="1em" color="#60c091" light uppercase>Last Updated: November 5, 2017</Subtitle>
                    <Subheading color="#4a4a4a" fontSize="1.25em">
                       Acceptance of Terms
                     </Subheading>
                     <Paragraph color="#000" fontSize="1em">
                       Welcome to Esusu (www.esusu.today/), owned and operated by Esusu, Inc.&nbsp;(&ldquo;Esusu&rdquo;). In these Terms,&nbsp;&ldquo;you&rdquo;&nbsp;and&nbsp;&ldquo;your&rdquo;&nbsp;refer to the individual that uses the Service.&nbsp;&ldquo;We&rdquo;,&nbsp;&ldquo;us&rdquo;, or&nbsp;&ldquo;our&rdquo;&nbsp;also refer to Esusu.
-                    </Paragraph><br />
+                    </Paragraph>
+                    <br />
                         <Paragraph color="#000" fontSize="1em">
                           Esusu provides an online platform, process and service that allows users to connect directly with each other to share money among themselves (the&nbsp;&ldquo;Service&rdquo;). By using the Service, you agree to comply with and be legally bound by the terms and conditions of these Terms of Service (&ldquo;Terms&rdquo;) whether or not you become a registered user of the Service. These Terms govern your access to and use of the Service and constitute a binding legal agreement between you and Esusu. Please read carefully these Terms, and our Privacy Policy (at&nbsp;
                         <a href="http://www.esusu.today">
@@ -111,12 +112,9 @@ export default class extends React.Component {
                     Financial Terms Information
                   </Subheading>
                   <Paragraph color="#000" fontSize="1em">
-                    By entering into these Terms, you also agree to the terms and conditions of SynapsePay, our banking software and payment processing provider which can be found here [
-                    <a href="https://synapsepay.com/legal">
-                      https://synapsepay.com/legal
-                    </a>
-                    &nbsp;] and are incorporated by this reference.
+                    By entering into these Terms, you also agree to the terms and conditions of SynapsePay, our banking software and payment processing provider which can be found <a href="https://synapsepay.com/legal">here</a> and are incorporated by this reference.
                   </Paragraph><br />
+
                   <Paragraph color="#000" fontSize="1em">
                     By entering these Terms, you are also authorizing Esusu (or its third party payment processor) to debit the bank account you associated with your User Account for all amounts that you agree to contribute to a Group, and to withdraw any Service Fees. Your funds are held at a bank account in your name at SynapsePay's partner Triumph Bank and are FDIC insured up to $250,000. Fund transfers are done electronically and may occur immediately after being authorized (or when a User because in default of a contribution that is due). In order to become a User and participate in Groups, you understand and agree that Esusu reserves the right, in its sole discretion, to obtain a pre-authorization of your banking account in order to verify your account and relevant account balance. Please note that Esusu cannot control any fees that may be charged to a User by his or her bank related to transfers or otherwise, and Esusu disclaims all liability in this regard. Currently, all bank communications and transfers are stored at&nbsp;
                       <a href="https://www.synapsepay.com/">
@@ -126,7 +124,29 @@ export default class extends React.Component {
                     </Paragraph><br />
                     <Paragraph color="#000" fontSize="1em">
                       You authorize Esusu to make deposits or withdrawals for any transaction in your Groups from your linked bank account, either directly by Esusu or indirectly, via a third party online payment processor or by one of the payment methods described on the Service. You also authorize Esusu to deduce any Service Fees. If you are directed to Esusu&rsquo;s third party payment processor, you may be subject to terms and conditions governing use of that third party&rsquo;s service and that third party&rsquo;s personal information collection practices. Please review such terms and conditions and privacy policy before using the Service.
-                    </Paragraph><br />
+                    </Paragraph>
+                    <br />
+                    <Paragraph color="#000" fontSize="1em">
+                      By using our services, you authorize Esusu, LLC to hold your deposits for your benefit at Evolve Bank & Trust, Member FDIC, in an account (“FBO Account”). For purposes of applicable FDIC deposit insurance limitations, please note that deposits in Evolve Bank & Trust FBO Account may not be separately insured from any other deposit accounts you may have with Evolve Bank & Trust.
+                    </Paragraph>
+                    <br />
+                  <Subheading color="#4a4a4a" fontSize="1.25em">
+                    Electronic Fund Transfers ("EFTs") and Account Balances
+                  </Subheading>
+                  <Paragraph color="#000" fontSize="1em">
+                    By creating an account with <a href="/">Esusu, LLC</a> and initiating bank deposits or withdraws (i.e. EFTs), you agree to the terms of service and privacy policy of our financial software provider, SynapseFi, and SynapseFi’s financial institution partner, Evolve Bank & Trust, <a href="https://www.synapsefi.com/legal">Terms of Service & Privacy Policy</a> (“Synapse TOS”) which are incorporated herein by reference.  Terms not defined in this section shall be defined in Synapse TOS.
+                  </Paragraph><br />
+                    <Paragraph color="#000" fontSize="1em">
+                      We have partnered with SynapseFi, a financial services software company, to offer you the ability to facilitate rotational savings groups. When you sign up for an account with our Platform, you will also be be signing up for a SynapseFi User Account (as defined in <a href="https://www.synapsefi.com/legal">SynapseFi TOS</a>). You authorize us to share your identity and banking information with SynapseFi to open and support your User Account as further detailed in our <a href="#top">Privacy Policy</a> and <a href="https://synapsefi.com/privacy">Synapse’s Privacy Policy</a>. It is your responsibility to make sure the data you provide us is accurate and complete.  Additionally, you are responsible for complying with Synapse TOS when using your User Account.  It is your responsibility to read and understand Synapse TOS as it contains terms and conditions relating to your SynapseFi user account including but not limited to your rights, limitations, reversal and other liabilities, limitation of liability and binding arbitrations provisions.</Paragraph><br />
+                    <Paragraph color="#000" fontSize="1em">
+                      When you open a SynapseFi User Account, you will link a checking or savings account to perform EFT and, if applicable, deposit funds into your SynapseFi User Account.  Deposits into your User Account are held at Synapse's financial institution partners as detailed in Synapse TOS. DEPOSITS HELD IN A USER ACCOUNT MAY BE ELIGIBLE FOR INSURANCE BY THE FEDERAL DEPOSIT INSURANCE CORPORATION (“FDIC”) ON A PER USER BASIS DEPENDING ON THE RULES AND LIMITATIONS SET FORTH BY THE FDIC.  FOR PURPOSES OF APPLICABLE FDIC DEPOSIT INSURANCE LIMITATIONS, DEPOSITS IN ACCOUNTS AT THE FINANCIAL INSTITUTIONAL PARTNER(S) OPENED THROUGH THE FINANCIAL INSTITUTIONAL PARTNER(S) WITH SYNAPSE MAY NOT BE SEPARATELY INSURED FROM ANY OTHER ACCOUNTS YOU MAY HAVE OPENED WITH THE FINANCIAL INSTITUTIONAL PARTNER(S), DEPENDING ON THE NAMED ACCOUNT OWNERS.</Paragraph><br />
+                    <Paragraph color="#000" fontSize="1em">
+                      All EFT transactions are performed by and deposits are held by Synapse financial institution partner, Evolve Bank & Trust. Esusu and SynapseFi only transmit transaction instructions to Synapse financial institution partner. Esusu will provide you with all transactions notifications and User Account balances in addition to providing customer support relating to your Synapse User Account ad detailed below.</Paragraph><br />
+                    <Subheading color="#4a4a4a" fontSize="1.25em">
+                      Transactions History and Disputes
+                    </Subheading>
+                    <Paragraph color="#000" fontSize="1em">
+                      All questions regarding EFT transactions or your Synapse User Account must be directed to <a href="mailto:support@esusu.org">support@esusu.org</a> and not to Synapse or its financial institution partners. Esusu is responsible for resolving issues and errors relating to transactions and account balances.  If you wish to make a financial service complaint against Esusu, you may email <a href="mailto:issues@synapsepay.com">issues@synapsepay.com</a>.</Paragraph><br />
                     <Subheading color="#4a4a4a" fontSize="1.25em">
                       Taxes
                     </Subheading>

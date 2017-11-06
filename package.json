@@ -12,7 +12,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "now . && now alias"
   },
   "dependencies": {
     "dateformat": "^2.0.0",
