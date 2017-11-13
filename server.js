@@ -95,7 +95,7 @@ app.prepare()
 
   server.listen(3000, (err) => {
     if (err) throw err
-    console.log(`> RSeady on http://localhost:${PORT}`)
+    console.log(`> Ready on http://localhost:${PORT}`)
   })
 })
 .catch((err) => {

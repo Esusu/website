@@ -13,7 +13,14 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "deploy": "now . && now alias"
+    "deploy": "now . && now alias",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js, json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "dateformat": "^2.0.0",
@@ -36,5 +43,8 @@
     "styled-system": "^1.0.0-4",
     "sw-precache-webpack-plugin": "^0.11.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0"
+  }
 }
