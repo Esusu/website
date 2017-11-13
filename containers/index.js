@@ -17,6 +17,7 @@ import {
   HR } from '../components/atoms/typography'
 import { media } from '../lib/helpers/prop-helpers'
 import { Button } from '../components/atoms/link'
+import Icon from '../components/atoms/icon'
 import InviteForm from '../components/organisms/inviteForm'
 import initApi from '../data/initApi'
 
@@ -51,7 +52,6 @@ export default class extends React.Component {
 
   render() {
     const { page } = this.state
-    // console.log(page.data.hero[0].callToActionText)
     return page && (
       <Wrapper>
         <Head>
@@ -84,37 +84,15 @@ export default class extends React.Component {
             </VideoView>
           </Block> 
         </Section> 
-        {/* <Section> */}
-        {/*   <Block> */}
-        {/*     <Flex justify="center" align="center" wrap column> */}
-        {/*       <Box width={1}> */}
-        {/*         <PressCoverageBox  p={[1]}> */}
-        {/*           <Flex justify="center" align="center" wrap column> */}
-        {/*             <Box width={1}> */}
-        {/*               <Paragraph color="#000">Featured in ...</Paragraph> */}
-        {/*             </Box> */}
-        {/*             <Box width={1} pt={2}> */}
-        {/*               <Flex justify="center" align="center" wrap column> */}
-        {/*                 <Box> */}
-        {/*                   <CoverageImage src="/static/teenvogue.svg" alt="Esusu Inc Feature - TeenVogue" /> */}
-        {/*                 </Box> */}
-        {/*               </Flex> */}
-        {/*             </Box> */}
-        {/*           </Flex> */}
-        {/*         </PressCoverageBox> */}
-        {/*       </Box> */}
-        {/*     </Flex> */}
-        {/*   </Block> */}
-        {/* </Section> */}
         <Section marginTop="5em">
           <Block>
             <Flex justify="center" align="center" wrap column>
-              <Box w={[1, 1/2]}>
+              <Box w={[1]}>
                 <Subheading color="#60C091"center>Collective Savings 101</Subheading>
               </Box>
               <Box w={[1, 1/2]} p={[1, 2, 3, 4]}>
                 <RoscaVideoView>
-                  <iframe src="https://spark.adobe.com/video/5n0EP/embed" width="960" height="540" frameBorder="0" allowfullscreen></iframe>
+                  <iframe src="https://spark.adobe.com/video/5n0EP/embed" width="960" height="540" frameBorder="0" allowFullScreen></iframe>
                 </RoscaVideoView>
               </Box>
             </Flex>
@@ -128,32 +106,28 @@ export default class extends React.Component {
               </Box>
               <Box width={1}>
                 <Flex justify="center" wrap>
-                  <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
+                  <Box p={[1, 2]} w={[1, 1/2, 1/2, 1/4]}>
                     <Card>
-                      <Step>1</Step>
-                      <Desc>Create a savings group of trusted family, friends, or co-workers.</Desc>
-                      <Overlay>
-                        <OverlayImage src="/static/creategroup.png" />
-                      </Overlay>
+                      <Icon name="mobile" color="#60C091" height="75px" width="40px"/>
+                      <Desc>Users join the Esusu platform by downloading the Esusu iPhone App</Desc>
                     </Card>
                   </Box>
-                  <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
+                  <Box p={[1, 2]} w={[1, 1/2, 1/2, 1/4]}>
                     <Card>
-                      <Step>2</Step>
-                      <Desc>Set monthly savings goals and make contributions to the pot.
-                      </Desc>
-                      <Overlay>
-                        <OverlayImage src="/static/invitefriends.png" />
-                      </Overlay>
+                      <Icon name="group" color="#60C091" height="75px" width="104px"/>
+                      <Desc>Users invite their friends and family members to join their savings group</Desc>
                     </Card>
                   </Box>
-                  <Box p={[1, 2]} w={[1, 1/4, 1/4]}>
+                  <Box p={[1, 2]} w={[1, 1/2, 1/2, 1/4]}>
                     <Card>
-                      <Step>3</Step>
-                      <Desc>Take turn receiving the full pot of money.</Desc>
-                      <Overlay>
-                        <OverlayImage src="/static/beempowered.png" />
-                      </Overlay>
+                      <Icon name="deposit" height="75px" width="70px" />
+                      <Desc>Groups set a monthly savings goal and members make regular contributions</Desc>
+                    </Card>
+                  </Box>
+                  <Box p={[1, 2]} w={[1, 1/2, 1/2, 1/4]}>
+                    <Card>
+                      <Icon name="rotation"/>
+                      <Desc>Every month a different member withdraws funds from the group savings pot</Desc>
                     </Card>
                   </Box>
                 </Flex>
@@ -161,18 +135,45 @@ export default class extends React.Component {
             </Flex>
           </Block>
         </Section>
-        <Section>
+        <Section marginTop="5em">
           <Block>
-            <Flex justify="center" align="flex-end" wrap>
-              <Box width={[1, 1/2]} p={[ 1, 2, 3, 4 ]}>
-                <HR width="20" />
-                <Subheading color="#4A4A4A">Save Together. <br/>Build Community. <br/>Be Empowered.</Subheading>
-                <Spacer />
+            <Flex justify="center" align="center" column>
+              <Box width={1}>
+                <Subheading color="#60C091" center>Why Esusu?</Subheading>
               </Box>
-              <Box width={[1, 1/2]}>
-                <DemoView>
-                  <iframe width="438" height="930" src="//invis.io/MW9V2FLVZ" frameBorder="0" allowFullScreen></iframe>
-                </DemoView>
+              <Box width={1}>
+                <Flex justify="center" align="center" wrap>
+                  <Box width={[1, 1/2]} p={[ 1, 2, 3, 4 ]}>
+                    <Image src="/static/app-screenshot.png" />
+                  </Box>
+                  <Box width={[1, 1/2]} p={[ 1, 2, 3, 4 ]}>
+                    <HR width="20" />
+                    <Subheading fontSize="1.25em" color="#4A4A4A">No pen and paper required. <br/><br/>Direct payments between user accounts. <br/><br />Affordable scaling of savings communities.</Subheading>
+                    <Spacer />
+                  </Box>
+                </Flex>
+              </Box>
+            </Flex>
+          </Block>
+        </Section>
+        <Section marginTop="5em">
+          <Block>
+            <Flex justify="center" align="center" column>
+              <Box width={1}>
+                <Subheading color="#60C091" center>Interactive Preview</Subheading>
+              </Box>
+              <Box width={1}>
+                <Flex justify="center" align="center" wrap>
+                  <Box width={[1, 1/2]} p={[ 1, 2, 3, 4 ]}>
+                    <HR width="20" />
+                    <Subheading color="#4A4A4A">Save Together. <br/>Build Community. <br/>Be Empowered.</Subheading>
+                  </Box>
+                  <Box width={[1, 1/2]}>
+                    <DemoView>
+                      <iframe width="438" height="930" src="//invis.io/MW9V2FLVZ" frameBorder="0" allowFullScreen></iframe>
+                    </DemoView>
+                  </Box>
+                </Flex>
               </Box>
             </Flex>
           </Block>
@@ -213,19 +214,15 @@ const Card = styled.div`
   height: 15em;
   position: relative;
   margin: 0 auto;
-  &:hover > div {
-    height: 100%;
-    width: 100%;
-  }
 `
 
 const Image = styled.img`
-display: block;  
-width: 300px;
-height: auto;
-background: #F7F7F7;
-box-shadow: -9px 12px 24px 0 rgba(0,0,0,0.10);
-border-radius: 4px;
+  display: block;  
+  width: 300px;
+  height: auto;
+  ${media.phone`
+    width: 100%;
+  `}
 
 `
 const Overlay = styled.div`
@@ -243,10 +240,7 @@ const Overlay = styled.div`
 `
 
 const Bio = styled.div`
-/* white-space: nowrap;  */
 color: white;
-/* font-size: 20px; */
-  /* position: absolute; */
 position: relative;
 overflow: hidden;
 top: 50%;

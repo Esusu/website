@@ -3296,6 +3296,10 @@ react-hot-loader@3.0.0-beta.7:
     redbox-react "^1.3.6"
     source-map "^0.4.4"
 
+react-inline-svg-icon@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-inline-svg-icon/-/react-inline-svg-icon-0.1.2.tgz#b063b09fb9735ff0001b6b853e1fbab5abe8f659"
+
 react-no-ssr@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-no-ssr/-/react-no-ssr-1.1.0.tgz#313b48d2e26020f969ed98e472f10481604e3cc8"
