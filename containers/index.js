@@ -223,7 +223,6 @@ const Image = styled.img`
   ${media.phone`
     width: 100%;
   `}
-
 `
 const Overlay = styled.div`
   position: absolute;

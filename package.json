@@ -13,7 +13,14 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "deploy": "now . && now alias"
+    "deploy": "now . && now alias",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js, json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "dateformat": "^2.0.0",
@@ -27,7 +34,6 @@
     "prismic.io": "^3.5.7",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-inline-svg-icon": "^0.1.2",
     "react-no-ssr": "^1.1.0",
     "react-overdrive": "0.0.8",
     "react-redux": "^5.0.6",
@@ -37,5 +43,8 @@
     "styled-system": "^1.0.0-4",
     "sw-precache-webpack-plugin": "^0.11.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0"
+  }
 }

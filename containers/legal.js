@@ -577,7 +577,7 @@ const SectionLink = styled.a`
 `
 
 const TopLink = styled(SectionLink)`
-   border-bottom: 1px solid #60C091;
+  border-bottom: 1px solid #60C091;
 `
 
 const BackToTop = styled.a`

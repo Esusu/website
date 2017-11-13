@@ -77,7 +77,7 @@ class Icon extends React.Component {
 Icon.defaultProps = {
   title: 'icon',
   size: 75,
-  color: '60C091'
+  color: '#60C091'
 }
 
 Icon.propTypes = {
