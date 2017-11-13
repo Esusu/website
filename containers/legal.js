@@ -520,8 +520,26 @@ export default class extends React.Component {
                     <Subtitle fontSize="1.25em" color="#60c091">Disclaimer:
                     </Subtitle>
                     <Paragraph color="#000" fontSize="1em">
-                      The original, legally binding version of this document is written in English. If this document is translated into other languages, there may be discrepancies between the English version and a translated version. If so, the English version supersedes the translated version.</Paragraph>
-
+                      The original, legally binding version of this document is written in English. If this document is translated into other languages, there may be discrepancies between the English version and a translated version. If so, the English version supersedes the translated version.</Paragraph> </br>
+                </TextWrapper>
+                <TextWrapper>
+                  <Subtitle fontSize="1.25em" color="#60C091">Use of Licensed Work</Subtitle>
+                  <Subheading fontSize="1.25em" color="#4a4a4a">Icons by</Subheading>
+                  <Paragraph fontSize="1em" color="#000">
+                    - Icon Depot from the <a href="https://thenounproject.com" href="_blank">Noun Project</a>
+                  </Paragraph>
+                  <Paragraph fontSize="1em" color="#000">
+                    - Ananth from the <a href="https://thenounproject.com" href="_blank">Noun Project</a>
+                  </Paragraph>
+                  <Paragraph fontSize="1em" color="#000">
+                    - Sergey Demushkin from the <a href="https://thenounproject.com" href="_blank">Noun Project</a>
+                  </Paragraph>
+                  <Paragraph fontSize="1em" color="#000">
+                    - Musket from the <a href="https://thenounproject.com" href="_blank">Noun Project</a>
+                  </Paragraph>
+                  <Paragraph fontSize="1em" color="#000">
+                    - Tanguy Keryhuel from the <a href="https://thenounproject.com" href="_blank">Noun Project</a>
+                  </Paragraph>
                 </TextWrapper>
               </Box>
             </Flex>
@@ -559,7 +577,7 @@ const SectionLink = styled.a`
 `
 
 const TopLink = styled(SectionLink)`
-   border-bottom: 1px solid #60C091;
+  border-bottom: 1px solid #60C091;
 `
 
 const BackToTop = styled.a`
