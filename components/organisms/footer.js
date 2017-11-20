@@ -10,7 +10,8 @@ import {
   FormSubheading,
   FormField,
   Input } from '../atoms/form'
-
+import { Paragraph } from '../atoms/typography'
+import { StyledLink } from '../atoms/link'
 import FooterNav from '../molecules/footerNav'
 import InterestForm from '../organisms/interestForm'
 
@@ -29,6 +30,7 @@ function Footer() {
           </Flex>
           <Flex>
             <Box width={1} pb={[1, 2, 3, 4]}  pr={[1, 2, 3, 4]}  pl={[1, 2, 3, 4]}>
+              <Paragraph color="#fff" fontSize="1em">Need help? Email us at <StyledLink color="#fff" href="mailto:help@esusu.today" style={{ textDecoration: 'underline' }}>help@esusu.today</StyledLink></Paragraph>
               <Errata>
                 <p>
                   Esusu Inc., {(new Date()).getFullYear()} &copy;. All rights reserved.

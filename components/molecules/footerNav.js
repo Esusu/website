@@ -7,6 +7,7 @@ import {
   Navigation,
   Menu,
   MenuItem } from '../atoms/navigation'
+import  { Paragraph } from '../atoms/typography'
 import { StyledLink } from '../atoms/link'
 
 export default () => (

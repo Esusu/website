@@ -215,6 +215,10 @@ export default class extends React.Component {
                     herein, Service Fees are non-refundable.
                   </Paragraph>
                   <br />
+                  <Paragraph color="#000" fontSize="1em">
+                    Bank services are provided by <a href="https://www.getevolved.com" target="_blank">Evolve Bank & Trust</a>, Member FDIC, through our banking software provider, <a href="https://synapsefi.com/" target="_blank">SynapseFI</a>. To report a complaint relating to the bank services, email <a href="mailto:help@synapsefi.com">help@synapsefi.com</a> 
+                  </Paragraph>
+                  <br />
                   <Subheading color="#4a4a4a" fontSize="1.25em">
                     Financial Terms Information
                   </Subheading>
